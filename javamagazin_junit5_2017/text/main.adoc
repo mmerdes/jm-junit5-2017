@@ -2,18 +2,23 @@
 
 = Beim Jupiter: JUnit 5 ist da!
 
-
+//mm
 include::intro.adoc[]
 
+//christian
 include::architektur.adoc[]
 
 == Wesentliche Neuerungen
 
+//mm
 include::neuerungen1.adoc[]
+
+//christian
 include::neuerungen2.adoc[]
 
+//christian
 include::integration.adoc[]
 
-
+//mm
 == Fazit
 
