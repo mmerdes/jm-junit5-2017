@@ -1,0 +1,16 @@
+
+
+= Beim Jupiter: JUnit 5 ist da!
+
+
+include::intro.adoc[]
+
+include::architektur.adoc[]
+
+include::neuerungen.adoc[]
+
+include::integration.adoc[]
+
+
+== Fazit
+

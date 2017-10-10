@@ -1,0 +1,11 @@
+
+== Wesentliche Neuerungen
+
+=== Frei definierbare Namen
+=== Parameter Injection
+=== Nested Tests
+=== Tags und Meta-Annotations
+=== Dynamische Tests: @TestFactory und @ParameterizedTest
+=== Extensions
+
+
