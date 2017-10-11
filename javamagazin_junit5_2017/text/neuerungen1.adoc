@@ -36,5 +36,43 @@ image::images/nested_ide.png[]
 
 === Dynamische Tests: @TestFactory und @ParameterizedTest
 
+Während die grundlegenden Annotationen wie @Test oder @BeforeEach, @AfterAll etc im wesentlichen
+eine vergleichbare Semantik wie die entsprechenden JUnit 4-Vorgänger haben,
+so gibt es in JUnit 5 auch grundlegend neue Konzepte.
+Hierzu zählt insbesondere die Möglichkeit, dynamische Tests zu erstellen.
+
+Neben den schon aus JUnit 4 in verschiedenen Varianten bekannten parametrisierten Tests
+stellen vor allem die Annotation @TestFactory eine besondere Neuerung dar.
+Mit dieser Annotation gekennzeichnete Methoden stellen selbst keine Tests dar,
+sondern liefern eine Stream (oder eine Collection) an Testfällen zurück.
+Dieser Stream entsteht erst zur Laufzeit,
+insbesondere ist seine Länge nicht vorab bekannt.
+Durch die in der JUnit Platform exponierten Listener ist die IDE aber dennoch in der Lage,
+für jeden Testfall innerhalb des Streams einen sauberen Knoten im Ausführungsbaum darzustellen
+und das in Verbindung mit dynamischen Namen.
+Lässt man z.B. das folgende Beispiel in einer IDE ablaufen,
+so sieht man, dass die einzelnen Knoten tatsächlich erst zur Laufzeit
+bei der Durchführung des gerade entstandenen Tests zur graphischen Darstellung hinzugefügt werden.
+
+image::images/dynamic_fibonacci_code.png[]
+
+Im Beispiel geht man von einem Stream natürlicher Zahl aus
+und bildet diesen mit Hilfe der Methodenreferenz 'fibonacci' auf Fibonacci-Zahlen ab.
+Diese Fibonacci-Folge wird dann über
+org.junit.jupiter.api.DynamicTest.dynamicTest(String displayName, Executable executable)
+auf einen Stream von dynamischen Testfällen abgebildet.
+Auch wenn in diesem Beispiel bereits zum Zeitpunkt der Testerstellung
+die Folge auf 12 Testfälle begrenzt wird,
+so könnte man jederzeit ein erst zur Laufzeit berechnetes Abbruchkriterium verwenden.
+
+image::images/dynamic_fibonacci_ide.png[]
+
+Eine solche Funktionalität lässt sich mit Hilfe von Lambda-Ausdrücken elegant realisieren.
+Die so gewonnene Ausdrucksmächtigkeit für dieses und andere Feature
+war bei den Vorüberlegungen für das neue JUnit 5 im Jahre 2015 mit ausschlaggebend dafür,
+die Abwärtskompatibilität zu Java 5 fallen zu lassen.
+Nicht umsonst trug die zur Anschubfinanzierung der Neuentwicklung initiierte Crowdfunding-Kampagne
+den Namen JUnit Lambda.
+
 
 
