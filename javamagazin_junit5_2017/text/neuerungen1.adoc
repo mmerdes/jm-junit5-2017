@@ -7,19 +7,33 @@ und einzelnen Testmethoden zu verwenden,
 so dass sich übersichtliche und gut lesbare Baumdarstellungen in der GUi der IDE erzielen lassen.
 
 
-image::images/displayname.png[]
+image::images/displayname_code.png[]
 
 
 Dies ergibt in der Ausführung eine saubere Darstellung in der IDE.
-Das Besondere an dieser neuen Möglichkeit, beliebige Namen zu vergeben,
-ist die Tatsache,
-dass die IDE trotzdem noch in der Lage ist zwischen der Baumansicht und dem Sourcecode zu navigieren.
+Das Besondere an der Realisierung dieses neuen Features ist die Tatsache,
+dass die IDE trotzdem noch in der Lage ist,
+zwischen der Baumansicht und dem Sourcecode zu navigieren.
 Dies wird dadurch ermöglicht, dass die JUnit Platform der IDE die Möglichkeit gibt,
 einzelne Tests sauber zu referenzieren ohne reflexiv auf den Methodennamen zuzugreifen.
 
 image::images/displaynames_ide.png[]
 
+
 === Nested Tests
+
+JUnit Jupiter unterstützt direkt die Erstellung von geschachtelten Tests über die Annotation @Nested.
+Diese Fähigkeit ist grob vergleichbar mit dem aus JUnit 4 bekannten HierarchicalContextRunner.
+
+image::images/nested_code.png[]
+
+Auch hier führt die Ausführung zu einem visuell besonders ansprechenden Ergebnis in der IDE,
+das in gewisser Weise schon an die spezifikationsnahen Darstellungen aus BDD-Frameworks erinnert.
+
+image::images/nested_ide.png[]
+
+
+
 === Dynamische Tests: @TestFactory und @ParameterizedTest
 
 
