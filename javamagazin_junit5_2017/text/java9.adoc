@@ -20,14 +20,41 @@ Deshalb bitte keine mit `@API(Status.INTERNAL)` annotierte Klasse verwenden.
 
 ==== Tests in Modulen organisieren
 
-Zwei Arten von Tests:
+Im Umfeld eines Modulsystems mit strikten Modulgrenzen gibt es zunächst zwei Arten von Test:
+solche Tests, die sich an die Grenzen halten und solche, die die Grenzen absichtlich misachten um interne Typen zu testen.
 
-* Modul-interne Tests, genau früher auf dem `class-path`, mit Zugriff auf `package private` und `protected` deklarierte Typen.
-* User-view Tests: nur Zugriff auf die exportierten Typen, die strikten Modulgrenzen werden respektiert
+Schaubild? Tabelle?
 
-Ausführung mittels `ConsoleLauncher`...
+* Echte Tests: nur Zugriff auf die exportierten Typen, die strikten Modulgrenzen werden respektiert
+* Modul-interne Tests: genau früher auf dem `class-path`, mit Zugriff auf `package private` und `protected` deklarierte Typen.
 
-`--select-module com.foo.bar` und `--select-module-path`
+Alle Tests, die im Modul `com.foo.bar` enthalten sind, ausführen:
+
+```java
+java --module-path mods/test:mods/main:mods/deps
+     --add-modules com.foo.bar
+     --module org.junit.platform.console
+     --select-module com.foo.bar
+```
+
+Alle Tests aus allen Modulen ausführen:
+
+```java
+java --module-path mods/test:mods/main:mods/deps
+     --add-modules ALL-MODULE-PATH
+     --module org.junit.platform.console
+     --scan-module-path
+```
+
+Modul-interne Tests können mittels `--patch-module module=file(;file)*` ausgeführt werden:
+
+```java
+java --module-path mods/test:mods/deps
+     --patch-module mods/test=mods/main (TODO!)
+     --add-modules ALL-MODULE-PATH
+     --module org.junit.platform.console
+     --scan-module-path
+```
 
 // Ideen aus `junit5-java9-modulepath` holen bzw. beschreiben
 
