@@ -4,7 +4,7 @@
 
 Die Annotation @DisplayName ermöglicht es, fast beliebige Namen für Testklassen
 und einzelnen Testmethoden zu verwenden,
-so dass sich übersichtliche und gut lesbare Baumdarstellungen in der GUi der IDE erzielen lassen
+so dass sich übersichtliche und gut lesbare Baumdarstellungen in der GUi der IDE erzielen lassen.
 
 
 image::images/displayname.png[]
@@ -15,7 +15,7 @@ Das Besondere an dieser neuen Möglichkeit, beliebige Namen zu vergeben,
 ist die Tatsache,
 dass die IDE trotzdem noch in der Lage ist zwischen der Baumansicht und dem Sourcecode zu navigieren.
 Dies wird dadurch ermöglicht, dass die JUnit Platform der IDE die Möglichkeit gibt,
-einzelne Tests sauber zu referenzieren ohne reflexiv auf den Methodennamen zuzugreifen
+einzelne Tests sauber zu referenzieren ohne reflexiv auf den Methodennamen zuzugreifen.
 
 image::images/displaynames_ide.png[]
 
