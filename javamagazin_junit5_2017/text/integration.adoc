@@ -4,7 +4,23 @@
 
 === Console, Maven und Gradle
 
+- Console: https://github.com/junit-team/junit5-samples/tree/master/junit5-vanilla-console
+
+- Gradle: https://github.com/junit-team/junit5-samples/tree/master/junit5-vanilla-gradle
+
+- Maven: https://github.com/junit-team/junit5-samples/tree/master/junit5-vanilla-maven
+
+
 === JUnit 4 und 5
+
+Gegenüberstellung der API von JUnit 4 und JUnit Jupiter aus Sicht eines Test-Authors.
+
+- Annotations
+- Assertions
+- Assumptions
+- Extensions
+
+Verweis auf https://github.com/junit-team/junit5/tree/master/junit-jupiter-migrationsupport
 
 === Java 9
 
