@@ -25,5 +25,5 @@ include::integration.adoc[]
 
 
 Wir danken dem gesamten JUnit 5-Team und Johannes Link,
-der nicht nur die Überlegungen zur grundlegend neuen Architektur wesentlich mitgestaltet hat,
-sondern auch diesen Artikel korrekturgelesen hat.
+der nicht nur diesen Artikel korrekturgelesen hat,
+sondern auch die Überlegungen zur grundlegend neuen Architektur wesentlich mitgestaltet hat.
