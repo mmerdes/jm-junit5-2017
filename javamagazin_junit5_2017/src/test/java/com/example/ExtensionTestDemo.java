@@ -1,4 +1,4 @@
-package demo;
+package com.example;
 
 
 import com.example.mockito.MockitoExtension;

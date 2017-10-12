@@ -74,5 +74,27 @@ die Abwärtskompatibilität zu Java 5 fallen zu lassen.
 Nicht umsonst trug die zur Anschubfinanzierung der Neuentwicklung initiierte Crowdfunding-Kampagne
 den Namen JUnit Lambda.
 
+Erwähnenswert ist in diesem Zusammenhang,
+dass es für diese Art von dynamischen Tests explizit _keine_ Ausführung von Lifecycle-Methoden auf der Ebene
+einzelner Testfälle gibt, sondern nur für die ganze @TestFactory-Methode.
+Möchte man also,
+dass z.B. @BeforeEach-Methoden für jeden einzelnen einer Menge von Testfällen aufgerufen werden,
+so sollte man die Annotation @ParameterizedTest verwenden.
+Dies Art von Test bietet weiter den Vorteil, dass die Werte, die einzelnen Testfälle parametrisieren,
+aus diversen vorhandenen oder selbst implementierbaren Quellen bezogen werden können.
+Im Gegensatz dazu werden diese Werte bei den zuvor behandelten dynamischen Tests typischerweise direkt im Code berechnet.
+Im folgenden Beispiel werden die Parameter der Einfachheit halber mit Hilfe der Annotation @MethodSource aus einer lokalen Methode gelesen.
+
+image::images/parameterized_code.png[]
+
+Zusammenfassend lässt sich sagen, dass beide Varianten es ermöglichen, eine Gruppe von Testfällen zu erzeugen,
+deren Anzahl zuvor nicht bekannt ist.
+Die Auswahl einer Variante kann dadurch geleitet werden,
+ob man Lifecycle-Support auf Testfall-Ebene benötigt
+und ob die parametrisierenden Werte sich im Test leicht berechnen lassen oder aus externen Quellen bezogen werden müssen.
+
+image::images/parameterized_ide.png[]
+
+
 
 
