@@ -23,7 +23,7 @@ include::integration.adoc[]
 == Fazit
 
 An ein Testframework werden hohe Anforderung in Bezug auf Stabilität und Kompatibilität gestellt,
-das gilt insbesondere für ein so lange existierende und so weit verbreitetes Framework wie JUnit.
+das gilt insbesondere für ein so lange existierendes und so weit verbreitetes Framework wie JUnit.
 Das JUnit 5-Team hat von Anfang versucht,
 diese besonderen Anforderungen in Einklang mit den nicht zuletzt durch Java 8 ermöglichten Innovationen zu bringen.
 Wichtiger noch als eine größere Eleganz bei der Testdefinition oder die vereinfachte Entwicklung von Erweiterungen
