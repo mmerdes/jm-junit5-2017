@@ -5,12 +5,13 @@
 == JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
 
 Eines der Hauptziele bei der Neuentwicklung von JUnit 5 war die
-Entkopplung der APIs zum Schreiben von denen zum Ausführen von Tests.
+logische Trennung der Rollen zum Verfassen eines Tests und zur Ausführung von Tests.
+Physich spiegelt sich das in der Entkopplung der APIs zum Schreiben von denen zum Ausführen von Tests wider.
 In JUnit 4 sind beide APIs in einem Artefakt enthalten.
 Alle, die JUnit auf irgendeine Weise verwenden, hängen von diesem einzigen jar-File ab,
-unabhängig davon, ob es sich dabei um IDEs, Build Tools, andere Test-Frameworks oder Testautoren handelt.
+unabhängig davon, ob es sich dabei um IDEs, Build Tools, andere Test-Frameworks oder Testcode handelt.
 Diese Verwender benutzen teilweise Interna von JUnit,
-etwa interne Klassen oder private Instanzvariablen.
+wie etwa interne Klassen oder private Instanzvariablen.
 So scheiterte z.B. der Versuch,
 die Version 4.12-beta-1 in Kombination mit einer bekannten IDE zu betreiben,
 weil die IDE eine private Variable, die umbenannt worden war, per Reflection referenziert hatte.
@@ -34,7 +35,8 @@ um die Ausführung von Tests anzustoßen.
 Der darin enthaltene _Launcher_ orchestriert das Auffinden
 und die Ausführung von Tests durch verschiedene _Engines_.
 
-Die Engine-Abstraktion ermöglicht die Ausführung von Testfällen auf Basis von JUnit 4 und JUnit 5 innerhalb eines einzigen Testlaufs.
+Die Engine-Abstraktion ermöglicht die Koexistenz verschiedener Testengines,
+und damit insbesondere auch die Ausführung von Testfällen auf Basis von JUnit 4 und JUnit 5 innerhalb eines einzigen Testlaufs.
 Dies impliziert, dass man bei existierenden Projekten auf Basis von JUnit 4 langsam mit einigen JUnit 5-Tests beginnen kann
 und keineswegs gezwungen ist, eine Big-Bang-Migration durchzuführen.
 Weitere Hilfen für die Migration finden sich im Artefakt 'junit-jupiter-migrationsupport'.

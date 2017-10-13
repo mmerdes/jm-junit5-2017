@@ -1,10 +1,16 @@
 
 === Extensions
 
+Bevor wir einige der wesentlichen Neuerungen für Testautoren vorstellen,
+soll zunächst noch das neue Extensionmodell vorgestellt werden.
+Im Gegensatz zu den gerade beschriebenen Testengines,
+die es ermöglichen, beliebige Testdefinitionen und Ausführungssemantiken zu unterstützen,
+dient das im Folgenden beschriebene Extensionmodell zur Verfeinerung der Jupiter-Engine.
+
 Das hybride Erweiterungsmodell von JUnit 4 aus Runner und Rule hatte sich über die Jahre hinweg
 insbesondere im Bereich der Komponierbarkeit als problematisch herausgestellt.
 Daher wurde bei JUnit 5 viel Energie darauf verwendet,
-ein sowohl einheitliches als auch ausdrucksmächtiges Erweiterungsmodell zu entwerfen und umzusetzen.
+ein sowohl einheitliches als auch ausdrucksmächtiges Erweiterungsmodell für die Jupiter-Engine zu entwerfen und umzusetzen.
 Es handelt sich dabei um ein feingranulares Erweiterungsmodell,
 das einen selektiven Eingriff an vielen Stellen der Testdefinition und -ausführung erlaubt.
 Insbesondere sind die Erweiterungen aus technischer Sicht beliebig kombinierbar.
