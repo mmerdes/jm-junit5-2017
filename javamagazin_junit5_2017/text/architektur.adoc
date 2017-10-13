@@ -63,3 +63,6 @@ Die JUnit-Jupiter-Engine realisiert dabei das neue JUnit 5-Programmiermodell,
 die JUnit-Vintage-Engine wird aus Gründen der Abwärtskompatibilität und Migrationsunterstützung mitgeliefert.
 Alle Beispiele und neuen Features in diesem Artikel beziehen sich auf die neue JUnit-Jupiter-Engine.
 
+
+
+include::extensions.adoc[]

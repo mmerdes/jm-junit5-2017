@@ -33,9 +33,9 @@ etwa zur Handhabung von Ausnahmen und insbesondere zur Interaktion mit den benut
 (z.b. @BeforeAll und BeforeAllCallback).
 
 Zusammenfassend lasst sich sagen,
-dass man entweder auf einer sehr hohen Abstraktionsebene eine eigene Testengine implementieren kann
+dass man entweder auf einer sehr hohen Granularitätsebene eine eigene Testengine implementieren kann
 oder aber die Standard-Testengine 'Jupiter' durch feingranulare und komponierbare Extensions erweitern kann.
-Eine Kombination von eigener Engine und Jupiter-Extensions funktioniert natürlich auch in JUnit 5 nicht.
+Eine Kombination aus eigener Engine und Jupiter-Extensions funktioniert natürlich auch in JUnit 5 nicht.
 Dies liegt aber in der Natur der Sache,
 da ein Erweiterungsmodell notwendigerweise die Abstraktionen einer konkreten Engine manipulierbar machen muss
-und sich nicht sinnvoll allgemein über alle Engines hinweg modellieren lässt.
+und sich nicht sinnvoll über alle denkbaren Engines hinweg verallgemeinern lässt.
