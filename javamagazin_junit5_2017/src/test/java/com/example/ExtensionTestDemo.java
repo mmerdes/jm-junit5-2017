@@ -16,13 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(MockitoExtension.class)
 class ExtensionTestDemo {
 
-
     @BeforeEach
     void setup(@Mock List<String> list) {
 
         Mockito.when(list.get(0)).thenReturn("Hallo Mock!");
     }
-
 
     @Test
     void aTest(@Mock List<String> list) {

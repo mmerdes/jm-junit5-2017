@@ -86,6 +86,8 @@ Dies Art von Test bietet weiter den Vorteil, dass die Werte, die einzelnen Testf
 aus diversen vorhandenen oder selbst implementierbaren Quellen bezogen werden können.
 Im Gegensatz dazu werden diese Werte bei den zuvor behandelten dynamischen Tests typischerweise direkt im Code berechnet.
 Im folgenden Beispiel werden die Parameter der Einfachheit halber mit Hilfe der Annotation @MethodSource aus einer lokalen Methode gelesen.
+@ParameterizedTest ist eine Anwendung des allgemeineren TestTemplate-Konzepts,
+mit dessen Hilfe auch die verwandten RepeatedTests umgesetzt sind.
 
 image::images/parameterized_code.png[]
 
@@ -139,6 +141,69 @@ was der konsistenten Verwendung z.B. durch verschiedene Testautoren im Team dien
 
 === Extensions
 
+Das hybride Erweiterungsmodell von JUnit 4 aus Runner und Rule hatte sich über die Jahre hinweg
+insbesondere im Bereich der Komponierbarkeit als problematisch herausgestellt.
+Daher wurde bei JUnit 5 viel Energie darauf verwendet,
+ein sowohl einheitliches als auch ausdrucksmächtiges Erweiterungsmodell zu entwerfen und umzusetzen.
+Es handelt sich dabei um ein feingranulares Erweiterungsmodell,
+das einen selektiven Eingriff an vielen Stellen der Testdefinition und -ausführung erlaubt.
+Insbesondere sind die Erweiterungen aus technischer Sicht beliebig kombinierbar.
+Diesem Thema ließe sich leicht ein ganzer Artikel widmen,
+hier soll nur kurz an Hand eines Beispiels die Grundidee erläutert werden.
+
+image::images/mockito_diagram.png[]
+
+Als Basis aller Erweiterungen für JUnit Jupiter gibt es das Marker-Interface 'Extension'.
+Nehmen wir nun an, dass eine einfache Extension zur Integration des Mockframeworks Mockito erstellt werden soll.
+Konkret müsste diese Erweiterung die beiden ExtensionPoints 'TestInstancePostProcessor' und 'ParameterResolver'
+implementieren, wenn man die Extension dann wie in Abbildung XXXXX verwenden will.
+Beide ExtensionPoints erweitern wiederum das genannte Marker-Interface.
+
+image::images/xxxxxx.png[]
+
+
+Mit JUnit 5 wird es möglich, beliebige ++TestExtension++s gleichzeitig
+zu registrieren. Diese Extensions übernehmen die Rollen der `TestRule`
+und `MethodRule` APIs aus JUnit 4. Eine oder mehrere ++TestExtension++s
+können mittels der `@ExtendWith` Annotation registriert werden, und
+zwar auf Klassen- oder Methoden-Ebene. Einige Extensions, die von
+JUnit mitgeliefert werden, werden auch automatisch registriert, wie
+z.B. die `DisabledCondition` und der `TestNameParameterResolver`.
+
+`TestExtension` ist selbst nur ein _Marker Interface_. Konkrete
+Erweiterungspunkte leiten von der Schnittstelle `ExtensionPoint` ab,
+die selbst von `TestExtension` ableitet. Als Erweiterung zur
+`TestExtension` kann die Reihenfolge von ++ExtensionPoint++s auch
+beeinflusst werden.
+
+Zum Zeitpunkt des Schreibens gibt es folgende ++ExtensionPoint++s für
+die `JUnit5TestEngine`:
+
+* `ContainerExecutionCondition`: entscheidet zur Laufzeit, ob ein
+  Test-Container (e.g., eine Testklasse) ausgeführt werden soll
+* `TestExecutionCondition` entscheidet zur Laufzeit, ob ein Test
+  (e.g., eine Testmethode) ausgeführt werden soll
+* `InstancePostProcessor`: bekommt eine Referenz auf die Testinstanz,
+  um z.B. Abhängigkeiten zu injizieren (i.e., _Dependency Injection_)
+* `MethodParameterResolver`: sorgt dafür, dass Parameter für
+  `@BeforeEach`, `@AfterEach`, `@BeforeAll`, `@AfterAll`, und `@Test`
+  Methoden dynamisch aufgelöst werden
+* `BeforeEachExtensionPoint`: dient als _Callback_ rund um die Ausführung von
+  `@BeforeEach` Methoden
+* `AfterEachExtensionPoint`: dient als _Callback_ rund um die Ausführung von
+  `@AfterEach` Methoden
+* `BeforeAllExtensionPoint`: dient als _Callback_ rund um die Ausführung von
+  `@BeforeAll` Methoden
+* `AfterAllExtensionPoint`: dient als _Callback_ rund um die Ausführung von
+  `@AfterAll` Methoden
+
+Da wir nun einen Überblick der möglichen ++ExtensionPoint++s bekommen
+haben, schauen wir uns im Folgenden einige konkrete Beispiele an.
+
+
+
+
+
 XXXXXXXXX
 XXXXXXXXX
 XXXXXXXXX
@@ -146,6 +211,6 @@ XXXXXXXXX
 XXXXXXXXX
 
 Aus Platzgründen verzichten wir hier auf die Vorstellung kleinerer neuer Features
-wie Unterstützung für Exception-Testing oder gruppierte Assertions.
+wie etas der Unterstützung für Exception-Testing oder gruppierte Assertions.
 Diese und viele weitere Details lassen sich im sehr ausführlichen User Guide nachlesen
 [REF: http://junit.org/junit5/docs/current/user-guide/].
