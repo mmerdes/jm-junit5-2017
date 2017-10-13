@@ -1,0 +1,31 @@
+
+== Fazit
+
+An ein Testframework werden hohe Anforderung in Bezug auf Stabilität und Kompatibilität gestellt,
+das gilt insbesondere für ein so lange existierendes und so weit verbreitetes Framework wie JUnit.
+Das JUnit 5-Team hat von Anfang versucht,
+diese besonderen Anforderungen in Einklang mit den nicht zuletzt durch Java 8 ermöglichten Innovationen zu bringen.
+Wichtiger noch als eine größere Eleganz bei der Testdefinition oder die vereinfachte Entwicklung von Erweiterungen
+ist möglicherweise sogar die grundlegend neu konzipierte Architektur,
+die erstmals zwischen allgemeiner und stabiler Plattform einerseits und verschiedenen Engines andrerseits unterscheidet.
+Nicht zuletzt ermöglicht die Plattform eine saubere und mächtige Einbindung belieber Engines in IDEs und Build-Tools.
+
+Wir danken den Kollegen vom JUnit 5-Team und Johannes Link,
+der nicht nur diesen Artikel korrekturgelesen hat,
+sondern auch die Überlegungen zur grundlegend neuen Architektur wesentlich mitgestaltet hat.
+Dank gebührt auch den vielen frühen Anwendern,
+die die Entwicklung von JUnit 5 in den letzten zwei Jahren durch Feedback und Diskussionen begleitet haben.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
