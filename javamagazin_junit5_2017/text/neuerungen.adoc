@@ -151,66 +151,31 @@ Insbesondere sind die Erweiterungen aus technischer Sicht beliebig kombinierbar.
 Diesem Thema ließe sich leicht ein ganzer Artikel widmen,
 hier soll nur kurz an Hand eines Beispiels die Grundidee erläutert werden.
 
-image::images/mockito_diagram.png[]
+image::images/mockito_extension_diagram.png[]
 
 Als Basis aller Erweiterungen für JUnit Jupiter gibt es das Marker-Interface 'Extension'.
 Nehmen wir nun an, dass eine einfache Extension zur Integration des Mockframeworks Mockito erstellt werden soll.
-Konkret müsste diese Erweiterung die beiden ExtensionPoints 'TestInstancePostProcessor' und 'ParameterResolver'
-implementieren, wenn man die Extension dann wie in Abbildung XXXXX verwenden will.
+Konkret müsste eine solche 'MockitoExtension' die beiden ExtensionPoints
+'TestInstancePostProcessor' und 'ParameterResolver' implementieren,
+wenn man die Extension dann wie in Abbildung XXXXX verwenden will.
 Beide ExtensionPoints erweitern wiederum das genannte Marker-Interface.
 
-image::images/xxxxxx.png[]
+image::images/mockito_extension_code.png[]
 
+In diesem Beispiel wird der ExtensionPoint 'TestInstancePostProcessor' benötigt,
+um über das Mockito-API die Mocks direkt nach Erstellung der Testinstanz zu initialisieren.
+Der ExtensionPoint 'ParameterResolver' hingegen dient dazu,
+die so erzeugten Mocks elegant in die gewünschten Test- oder Lifecycle-Methoden hineinreichen zu können,
+was präzise ausdrücken lässt, für welche Methoden welche Mocks bestimmt sind.
 
-Mit JUnit 5 wird es möglich, beliebige ++TestExtension++s gleichzeitig
-zu registrieren. Diese Extensions übernehmen die Rollen der `TestRule`
-und `MethodRule` APIs aus JUnit 4. Eine oder mehrere ++TestExtension++s
-können mittels der `@ExtendWith` Annotation registriert werden, und
-zwar auf Klassen- oder Methoden-Ebene. Einige Extensions, die von
-JUnit mitgeliefert werden, werden auch automatisch registriert, wie
-z.B. die `DisabledCondition` und der `TestNameParameterResolver`.
+Neben den beiden hier genannten ExtensionPoints gibt es eine ganz Reihe anderer,
+etwa zur Handhabung von Ausnahmen und insbesondere zur Interaktion mit den benutzerdefinierten Methoden des Test-Lifecycle
+(z.b. @BeforeAll und BeforeAllCallback).
 
-`TestExtension` ist selbst nur ein _Marker Interface_. Konkrete
-Erweiterungspunkte leiten von der Schnittstelle `ExtensionPoint` ab,
-die selbst von `TestExtension` ableitet. Als Erweiterung zur
-`TestExtension` kann die Reihenfolge von ++ExtensionPoint++s auch
-beeinflusst werden.
-
-Zum Zeitpunkt des Schreibens gibt es folgende ++ExtensionPoint++s für
-die `JUnit5TestEngine`:
-
-* `ContainerExecutionCondition`: entscheidet zur Laufzeit, ob ein
-  Test-Container (e.g., eine Testklasse) ausgeführt werden soll
-* `TestExecutionCondition` entscheidet zur Laufzeit, ob ein Test
-  (e.g., eine Testmethode) ausgeführt werden soll
-* `InstancePostProcessor`: bekommt eine Referenz auf die Testinstanz,
-  um z.B. Abhängigkeiten zu injizieren (i.e., _Dependency Injection_)
-* `MethodParameterResolver`: sorgt dafür, dass Parameter für
-  `@BeforeEach`, `@AfterEach`, `@BeforeAll`, `@AfterAll`, und `@Test`
-  Methoden dynamisch aufgelöst werden
-* `BeforeEachExtensionPoint`: dient als _Callback_ rund um die Ausführung von
-  `@BeforeEach` Methoden
-* `AfterEachExtensionPoint`: dient als _Callback_ rund um die Ausführung von
-  `@AfterEach` Methoden
-* `BeforeAllExtensionPoint`: dient als _Callback_ rund um die Ausführung von
-  `@BeforeAll` Methoden
-* `AfterAllExtensionPoint`: dient als _Callback_ rund um die Ausführung von
-  `@AfterAll` Methoden
-
-Da wir nun einen Überblick der möglichen ++ExtensionPoint++s bekommen
-haben, schauen wir uns im Folgenden einige konkrete Beispiele an.
-
-
-
-
-
-XXXXXXXXX
-XXXXXXXXX
-XXXXXXXXX
-XXXXXXXXX
-XXXXXXXXX
-
-Aus Platzgründen verzichten wir hier auf die Vorstellung kleinerer neuer Features
-wie etas der Unterstützung für Exception-Testing oder gruppierte Assertions.
-Diese und viele weitere Details lassen sich im sehr ausführlichen User Guide nachlesen
-[REF: http://junit.org/junit5/docs/current/user-guide/].
+Zusammenfassend lasst sich sagen,
+dass man entweder auf einer sehr hohen Abstraktionsebene eine eigene Testengine implementieren kann
+oder aber die Standard-Testengine 'Jupiter' durch feingranulare und komponierbare Extensions erweitern kann.
+Eine Kombination von eigener Engine und Jupiter-Extensions funktioniert natürlich auch in JUnit 5 nicht.
+Dies liegt aber in der Natur der Sache,
+da ein Erweiterungsmodell notwendigerweise die Abstraktionen einer konkreten Engine manipulierbar machen muss
+und sich nicht sinnvoll allgemein über alle Engines hinweg modellieren lässt.
