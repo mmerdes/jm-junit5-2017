@@ -10,6 +10,8 @@ include::dynamic_tests.adoc[]
 
 include::param_injection.adoc[]
 
+include::meta_annotations.adoc[]
+
 
 
 === Tags und Meta-Annotations
