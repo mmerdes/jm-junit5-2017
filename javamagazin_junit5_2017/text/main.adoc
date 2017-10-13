@@ -8,8 +8,7 @@ include::intro.adoc[]
 
 include::architektur.adoc[]
 
-include::neuerungen1.adoc[]
-include::neuerungen2.adoc[]
+include::neuerungen.adoc[]
 
 include::integration.adoc[]
 
