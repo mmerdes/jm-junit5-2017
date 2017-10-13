@@ -22,11 +22,3 @@ Gegenüberstellung der API von JUnit 4 und JUnit Jupiter aus Sicht eines Test-Au
 
 Verweis auf https://github.com/junit-team/junit5/tree/master/junit-jupiter-migrationsupport
 
-=== Java 9
-
-JUnit 5 erschien am 10. September 2017 und Java 9 nur elf Tage später am 21. des gleichen Monats.
-Deswegen konnten wir bei der Entwicklung von JUnit 5 nicht auf alle Besonderheiten von Java 9 Rücksicht nehmen.
-Aber vieles läuft. Auch unter Java 9.
-
-include::java9.adoc[]
-
