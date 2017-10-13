@@ -1,7 +1,35 @@
 
-
-
-
 == Architektur: JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
 
 
+== Grundlegende Architektur
+
+Eines der Hauptziele bei der Neuentwicklung von JUnit 5 war die Entkopplung der API zum Schreiben von
+Tests von der API zum Ausführen der Tests.
+In JUnit 4 sind beide in einem
+Artefakt enthalten. Alle, die JUnit auf irgendeine Weise verwenden, hängen von
+diesem ab -- egal ob es sich dabei um IDEs, Build Tools, andere Testing
+Frameworks oder Benutzer, die Tests schreiben, handelt. Diese Verwender
+benutzen teilweise Interna von JUnit, etwa interne Klassen oder private
+Instanzvariablen, die gar per Reflection ausgelesen werden. Die
+Weiterentwicklung von JUnit 4 wurde dadurch immens erschwert, in Teilen sogar
+nahezu unmöglich gemacht.
+
+.JUnit 5 Architektur
+image::images/architektur.png[]
+
+Um dieses Problem in Zukunft zu vermeiden, ist JUnit 5 in verschiedene Module
+aufgeteilt (s. Abbildung 1). Zum Schreiben von Tests benötigt man lediglich das
+Modul _junit5-api_, in dem alle Annotations wie etwa `@Test`, grundlegende
+`Assertions` etc. enthalten sind. Build Tools und IDEs verwenden
+_junit-launcher_ zum Ausführen von Tests. Der darin enthaltene _Launcher_
+orchestriert das Auffinden und die Ausführung von Tests durch verschiedene
+_Engines_. Die Engine-Abstraktion ermöglicht die Ausführung von JUnit 4 und
+JUnit 5 Testfällen im selben Testlauf. Die Engines registrieren sich über den
+_ServiceLoader_-Mechanismus beim Launcher. Die Engine-Implementierungen hängen
+dabei nur vom Artefakt _junit-engine-api_ ab. JUnit 5 wird zwei Engines
+mitliefern: _junit4-engine_ und _junit5-engine_ zum Auffinden und Ausführen von
+JUnit 4 bzw. 5 Tests. Die Engine API ist sogleich ein Angebot an existierende
+und zukünftige Testing Frameworks. Wenn sie eine Engine-Implementierung
+bereitstellen, können ihre Tests in allen IDEs und Build Tools laufen, die
+JUnit 5 unterstützen.
