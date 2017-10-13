@@ -145,7 +145,7 @@ XXXXXXXXX
 XXXXXXXXX
 XXXXXXXXX
 
-Aus Platzgründen verzichten wir hier auf die Vorstellung kleiner neuer Features
+Aus Platzgründen verzichten wir hier auf die Vorstellung kleinerer neuer Features
 wie Unterstützung für Exception-Testing oder gruppierte Assertions.
 Diese und viele weitere Details lassen sich im sehr ausführlichen User Guide nachlesen
 [REF: http://junit.org/junit5/docs/current/user-guide/].
