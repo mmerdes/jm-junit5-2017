@@ -2,22 +2,34 @@
 
 == Integration und Kompatibilität
 
-Wesentlich für den Erfolg eines Test-Frameworks sind nicht nur die Feature,
-sondern auch die Integration in andere Werkzeuge.
+Wesentlich für den Erfolg eines Test-Frameworks sind nicht nur moderne oder elegante Features,
+sondern vor allem auch die Integration in andere Werkzeuge.
 Die Ausführung von Tests innerhalb einer IDE wurde oben bereits ausführlich gezeigt,
 mindestends ebenso wichtig ist sicherlich die Integration mit CLI-basierten Buildtools,
 die in CI-Builds zum Einsatz kommen.
 
-=== Buildtools: Maven und Gradle
+=== Buildtools
 
 Die meisten Projekte im Java-Umfeld werden heute sicherlich mit Maven oder Gradle gebaut.
-Daher hat das JUnit 5-Team von Anfang an ein Gradle Plugin und einen Maven Surefire Provider
-mitentwickelt.
+Daher hat das JUnit 5-Team von Anfang an ein Gradle Plugin [Referenz]
+und einen Maven Surefire Provider [Referenz] mitentwickelt.
+Der Surefire Provider wurde bereits an das entsprechende Apache-Projekt übergeben,
+um dort weiterentwickelt zu werden;
+für das Gradle Plugin ist ein ähnliches Vorgehen in Vorbereitung.
+Möchte man eine JUnit 5-Projekt mit Maven oder Gradle neu aufsetzen,
+so lohnt sich ein Blick auf die entsprechenden Beispielprojekte
+[Referenz], [Referenz]
 
-- Gradle: https://github.com/junit-team/junit5-samples/tree/master/junit5-vanilla-gradle
-- Maven: https://github.com/junit-team/junit5-samples/tree/master/junit5-vanilla-maven
+// - Gradle: https://github.com/junit-team/junit5-samples/tree/master/junit5-vanilla-gradle
+// - Maven: https://github.com/junit-team/junit5-samples/tree/master/junit5-vanilla-maven
 
-ebenso console
+Zusätzlich zu dieser Buildtool-Integration gibt es einen `ConsoleLauncher`,
+der mit zahlreichen Optionen parametrisierbar ist
+und das Ergebnis einer Testausführung in einer wohlformatierten Baumdarstellung ausgibt.
+Dazu gitb es im zentralen Maven-Repository unter der Dependency `junit-platform-console-standalone`
+ein stand-alone Executable, was direkt mit `java -jar` aufgerufen werden kann.
+Mit diesem Werkzeug wäre auch eine Integration in nicht direkt unterstützte Buildtools (z.B. Ant) realisierbar.
+
 
 === JUnit 4 und 5
 
