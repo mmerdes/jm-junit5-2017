@@ -31,8 +31,24 @@ ein stand-alone Executable, was direkt mit `java -jar` aufgerufen werden kann.
 Mit diesem Werkzeug wäre auch eine Integration in nicht direkt unterstützte Buildtools (z.B. Ant) realisierbar.
 
 
-=== JUnit 4 und 5
+=== JUnit 4 und 5 (Jupiter)
 
+Wie bereits im Abschnitt über die Architektur erwähnt,
+war es ein wesentliches Designziel,
+mehrere Engines in einem einzigen Lauf gleichzeitig ausführen zu können.
+Dies gilt natürlich insbesondere für die Koexistenz von JUnit 4- und Junit Jupiter-Tests.
+Für die Ausführung von Junit 4-Tests innerhalb einer neuen JUnit 5-Umgebung
+existiert die bereits beschriebene JUnit-Vintage-Engine.
+Umgekehrt lassen sich neue Jupiter-Tests in JUnit 4-Umgebungen ausführen,
+wenn man den entsprechenden Runner
+XXXXXXXXXXXXXXX
+aus der Dependency
+XXXXXXXXXXXX
+verwendet,
+der das Jupiter-Programmiermodell bestmöglich auf die in JUnit 4 vorhandenen Abstraktionen übersetzt.
+Auch wenn beide Integrationen eher nicht
+für eine dauerhafte Verwendung vorgesehen sind,
+so lassen sich doch einige Migrationsjahre damit realisieren.
 
 
 === Java 9
