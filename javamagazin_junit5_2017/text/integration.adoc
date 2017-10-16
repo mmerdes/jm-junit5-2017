@@ -2,23 +2,35 @@
 
 == Integration und Kompatibilität
 
-=== Console, Maven und Gradle
+Wesentlich für den Erfolg eines Test-Frameworks sind nicht nur die Feature,
+sondern auch die Integration in andere Werkzeuge.
+Die Ausführung von Tests innerhalb einer IDE wurde oben bereits ausführlich gezeigt,
+mindestends ebenso wichtig ist sicherlich die Integration mit CLI-basierten Buildtools,
+die in CI-Builds zum Einsatz kommen.
 
-- Console: https://github.com/junit-team/junit5-samples/tree/master/junit5-vanilla-console
+=== Buildtools: Maven und Gradle
+
+Die meisten Projekte im Java-Umfeld werden heute sicherlich mit Maven oder Gradle gebaut.
+Daher hat das JUnit 5-Team von Anfang an ein Gradle Plugin und einen Maven Surefire Provider
+mitentwickelt.
 
 - Gradle: https://github.com/junit-team/junit5-samples/tree/master/junit5-vanilla-gradle
-
 - Maven: https://github.com/junit-team/junit5-samples/tree/master/junit5-vanilla-maven
 
+ebenso console
 
 === JUnit 4 und 5
 
-Gegenüberstellung der API von JUnit 4 und JUnit Jupiter aus Sicht eines Test-Authors.
 
-- Annotations
-- Assertions
-- Assumptions
-- Extensions
 
-Verweis auf https://github.com/junit-team/junit5/tree/master/junit-jupiter-migrationsupport
+=== Java 9
+
+
+Seit Version 5.0.0 kann JUnit 5 zusammen mit Java 9 verwendet werden,
+die CI-Builds laufen schon seit einigen Monaten sowohl gegen Java 8 als auch Java 9.
+Die Modulinformation wird derzeit noch generisch automatisch generiert,
+d.h. dass im Moment noch alle Klassen physisch verwendbar sind.
+Um für die Zukunkft gewappnet zu sein,
+sollte man als Integrateur oder Endanwender jedoch bereits jetzt auf die Vewendung von Klassen verzichten,
+die mit `@API(Status.INTERNAL)` annotiert sind.
 
