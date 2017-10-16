@@ -4,7 +4,7 @@
 
 Die Annotation @DisplayName ermöglicht es, fast beliebige Namen für Testklassen
 und einzelnen Testmethoden zu verwenden,
-so dass sich übersichtliche und gut lesbare Baumdarstellungen in der GUi der IDE erzielen lassen.
+so dass sich übersichtliche und gut lesbare Baumdarstellungen in der GUI der IDE erzielen lassen.
 
 
 image::images/displayname_code.png[]
