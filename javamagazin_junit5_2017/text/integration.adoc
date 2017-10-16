@@ -41,14 +41,14 @@ Für die Ausführung von Junit 4-Tests innerhalb einer neuen JUnit 5-Umgebung
 existiert die bereits beschriebene JUnit-Vintage-Engine.
 Umgekehrt lassen sich neue Jupiter-Tests in JUnit 4-Umgebungen ausführen,
 wenn man den entsprechenden Runner
-XXXXXXXXXXXXXXX
+`org.junit.platform.runner.JUnitPlatform`
 aus der Dependency
-XXXXXXXXXXXX
+`junit-platform-runner`
 verwendet,
 der das Jupiter-Programmiermodell bestmöglich auf die in JUnit 4 vorhandenen Abstraktionen übersetzt.
 Auch wenn beide Integrationen eher nicht
 für eine dauerhafte Verwendung vorgesehen sind,
-so lassen sich doch einige Migrationsjahre damit realisieren.
+so lassen sich doch einige Migrationsjahre damit bestreiten.
 
 
 === Java 9
