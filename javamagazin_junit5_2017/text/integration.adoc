@@ -56,9 +56,9 @@ so lassen sich doch einige Migrationsjahre damit bestreiten.
 
 Seit Version 5.0.0 kann JUnit 5 zusammen mit Java 9 verwendet werden,
 die CI-Builds laufen schon seit einigen Monaten sowohl gegen Java 8 als auch Java 9.
-Die Modulinformation wird derzeit noch generisch automatisch generiert,
+Die Modulinformation wird derzeit noch automatisch generiert,
 d.h. dass im Moment noch alle Klassen physisch verwendbar sind.
-Um für die Zukunkft gewappnet zu sein,
+Um für die Zukunft gewappnet zu sein,
 sollte man als Integrateur oder Endanwender jedoch bereits jetzt auf die Verwendung von Klassen verzichten,
 die mit `@API(Status.INTERNAL)` annotiert sind.
 
