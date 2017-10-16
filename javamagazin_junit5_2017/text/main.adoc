@@ -1,6 +1,6 @@
 
 
-= Beim Jupiter, JUnit 5 ist da!
+= Beim Jupiter: JUnit 5 ist da!
 
 
 include::intro.adoc[]
