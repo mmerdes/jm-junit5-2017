@@ -1,0 +1,294 @@
+
+== Erweiterbarkeit
+
+Ein grundlegendes Ziel des JUnit Lambda Projekts ist die flexible
+Erweiterbarkeit des JUnit 5 Frameworks durch kombinierbare Erweiterungspunkte.
+
+=== Probleme des bisherigen Erweiterungsmodells
+
+JUnit 4 führte das `Runner` API ein, womit Entwickler das Verhalten von
+JUnit komplett erweitern konnten. Bekannt sind ++Runner++s wie
+`Parameterized` von JUnit selbst und maßgeschneiderte `Runner` von
+Drittparteien wie zum Beispiel der `SpringJUnit4ClassRunner`,
+`MockitoJUnitRunner`, `Cucumber`, usw. Ein `Runner` kann durchaus sehr
+mächtig sein, allerdings lassen sich mehrere `Runner` nicht
+kombinieren. Spätere Versionen von JUnit 4 haben deshalb Rules
+eingeführt.
+
+Seit Version 4.7 unterstützt JUnit `MethodRules`, und ab JUnit
+4.9 gibt es Unterstützung für `TestRules`. Eine `TestRule` kann auf
+der Methoden- oder Klassenebene angewendet werden, aber nur eine
+`MethodRule` hat Zugriff auf die Testinstanz. Im Gegensatz zu
+++Runner++s lassen sich Rules beliebig kombinieren. Allerdings ist der
+Einsatz einer Rule beschränkt: eine Rule kann nicht gleichzeitig
+`TestRule` und `MethodRule` implementieren. Das hat zur Folge, dass
+manche Drittparteien beide Rule APIs in verschiedenen Klassen
+implementieren mussten: `SpringClassRule` und `SpringMethodRule` können
+als konkretes Beispiel dienen.
+
+=== JUnit 5 Erweiterungsmodell
+
+Um die oben genannten Probleme von JUnit 4 zu vermeiden, führt JUnit 5
+ein komplett neues Erweiterungsmodell ein. Für den `Launcher` gibt es
+das `TestExecutionListener` API. Als Ersatz für Rules gibt es die
+`TestExtension` APIs. Anstatt ++Runner++s können mehrere ++TestEngine++s
+gleichzeitig zum Einsatz kommen, und zwar innerhalb des gleichen
+Testlaufs.
+
+==== Launcher und TestEngine
+
+Wie vorher erwähnt (s. <<Grundlegende Architektur>>) gibt es die
+`Launcher` und `TestEngine` APIs als Basis für die Ausführung von Tests.
+
+Einem Launcher können beliebige `TestExecutionListener` hinzugefügt
+werden. Während der Ausführung werden alle Listener über verschiedene
+Events informiert, wie z.B. `executionSkipped`, `executionStarted`,
+`executionFinished` usw. Mitgeliefert werden ein `LoggingListener` und
+ein `SummaryGeneratingListener`, die zum Logging bzw. zur einfachen
+Report-Generierung auf der Konsole dienen. Für die Zukunft sind zusätzliche
+Listener für "Rich Reporting" geplant, z.B. für die Generierung von XML-
+oder JSON-Reports. Tool-Anbieter können ihre eigenen Listener
+registrieren, um Reports in der IDE und in Builds anzuzeigen.
+
+Eine Vielfalt von Tests für Java-Anwendungen werden zukünftig mit dem
+JUnit 5 API entwickelt werden, das von der `JUnit5TestEngine` unterstützt
+wird. Für Tests, die noch auf JUnit 4 oder JUnit 3 basieren, gibt es
+die `JUnit4TestEngine`. Für andere Testarten gäbe es die Möglichkeit,
+eine eigene `TestEngine` zu implementieren, z.B. um ein anderes Format
+wie z.B. eine XML-Definition anstatt Java-Klassen zu unterstützen.
+
+Drittparteien können eigene ++TestEngine++s über den Java
+`ServiceLoader` Mechanismus automatisch registrieren lassen, indem eine
+Textdatei unter `META-INF/services/org.junit.gen5.engine.TestEngine` im
+JAR angelegt wird. Diese Datei muss einfach den kompletten Klassennamen
+der `TestEngine`-Implementierung enthalten.
+
+Eigene ++TestEngine++s sollten aber nur implementiert werden, wenn
+bestehende ++TestEngine++s nicht ausreichend erweiterbar sind. In allen
+anderen Fällen sollte die `TestExtension` APIs der `JUnit5TestEngine`
+verwendet werden.
+
+==== TestExtension und ExtensionPoint APIs
+
+Mit JUnit 5 wird es möglich, beliebige ++TestExtension++s gleichzeitig
+zu registrieren. Diese Extensions übernehmen die Rollen der `TestRule`
+und `MethodRule` APIs aus JUnit 4. Eine oder mehrere ++TestExtension++s
+können mittels der `@ExtendWith` Annotation registriert werden, und
+zwar auf Klassen- oder Methoden-Ebene. Einige Extensions, die von
+JUnit mitgeliefert werden, werden auch automatisch registriert, wie
+z.B. die `DisabledCondition` und der `TestNameParameterResolver`.
+
+`TestExtension` ist selbst nur ein _Marker Interface_. Konkrete
+Erweiterungspunkte leiten von der Schnittstelle `ExtensionPoint` ab,
+die selbst von `TestExtension` ableitet. Als Erweiterung zur
+`TestExtension` kann die Reihenfolge von ++ExtensionPoint++s auch
+beeinflusst werden.
+
+Zum Zeitpunkt des Schreibens gibt es folgende ++ExtensionPoint++s für
+die `JUnit5TestEngine`:
+
+* `ContainerExecutionCondition`: entscheidet zur Laufzeit, ob ein
+  Test-Container (e.g., eine Testklasse) ausgeführt werden soll
+* `TestExecutionCondition` entscheidet zur Laufzeit, ob ein Test
+  (e.g., eine Testmethode) ausgeführt werden soll
+* `InstancePostProcessor`: bekommt eine Referenz auf die Testinstanz,
+  um z.B. Abhängigkeiten zu injizieren (i.e., _Dependency Injection_)
+* `MethodParameterResolver`: sorgt dafür, dass Parameter für
+  `@BeforeEach`, `@AfterEach`, `@BeforeAll`, `@AfterAll`, und `@Test`
+  Methoden dynamisch aufgelöst werden
+* `BeforeEachExtensionPoint`: dient als _Callback_ rund um die Ausführung von
+  `@BeforeEach` Methoden
+* `AfterEachExtensionPoint`: dient als _Callback_ rund um die Ausführung von
+  `@AfterEach` Methoden
+* `BeforeAllExtensionPoint`: dient als _Callback_ rund um die Ausführung von
+  `@BeforeAll` Methoden
+* `AfterAllExtensionPoint`: dient als _Callback_ rund um die Ausführung von
+  `@AfterAll` Methoden
+
+Da wir nun einen Überblick der möglichen ++ExtensionPoint++s bekommen
+haben, schauen wir uns im Folgenden einige konkrete Beispiele an.
+
+==== Beispiel: Bedingungsabhängige Test-Ausführung
+
+Nehmen wir an, wir wollen, dass einige Testmethoden nur auf dem
+CI-Server ausgeführt werden. Es besteht die Möglichkeit, ein
+bestimmtes Tag zu definieren (z.B., "ci-server"), dieses durch
+`@Tag("ci-server")` auf den betroffenen Methoden zu deklarieren und das
+`"ci-server"` Tag beim `Launcher` bzw. beim Build-Plugin oder in der
+IDE anzugeben. Das würde natürlich funktionieren, aber diese
+Vorgehensweise ist eher statisch. Wenn wir dynamisch entscheiden
+müssen, ob ein Test ausgeführt werden sollte, dann können wir eine
+maßgeschneiderte `TestExecutionCondition` implementieren, wie folgt.
+
+.RunOnCiServer
+[source,java]
+----
+import static org.junit...ConditionEvaluationResult.disabled;
+import static org.junit...ConditionEvaluationResult.enabled;
+
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@ExtendWith(RunOnCiServer.CiServerCondition.class)
+public @interface RunOnCiServer {
+
+  static class CiServerCondition implements TestExecutionCondition {
+
+    @Override
+    public ConditionEvaluationResult evaluate(TestExtensionContext ctx) {
+      boolean onCiServer = // determine if on CI Server
+
+      if (!onCiServer) {
+        return disabled("Not on CI Server");
+      }
+
+      return enabled("On CI Server");
+    }
+  }
+}
+----
+
+`@RunOnCiServer` ist eine Annotation, die selbst mit
+`@ExtendWith(RunOnCiServer.CiServerCondition.class)` meta-annotiert
+ist. Wenn eine Testmethode mit `@RunOnCiServer` annotiert ist -- wie
+unten in der `CiServerTests` Klasse -- dann kommt die
+`CiServerCondition` zum Einsatz. In der Methode `evaluate()` von
+`CiServerCondition` können wir dynamisch, programmatisch entscheiden,
+ob der jetzige Testlauf auf dem CI-Server stattfindet, z.B. anhand von
+Umgebungsvariablen. Über den `TestExtensionContext` können wir auf
+die Testinstanz und die Testmethode zugreifen, falls wir weitere
+Informationen benötigen.
+
+.CiServerTests
+[source,java]
+----
+class CiServerTests {
+
+	@Test
+	@RunOnCiServer
+    void onlyRunOnCiServer() {
+		// ...
+	}
+}
+----
+
+==== Beispiel: Dependency Injection mit Mockito
+
+Mit JUnit 4 hatte man die Option, Mockito-Mocks über drei Wege in
+Testklassen zu injizieren: mit dem `MockitoJUnitRunner`, mit der
+`MockitoRule` oder programmatisch mittels
+`MockitoAnnotations.initMocks(this)`. Alle Varianten erfordern, dass
+die entsprechenden Felder mit `@Mock` annotiert sind. Da JUnit 5 weder
+`Runner` noch Rules unterstützt, müssen wir nun einen anderen Weg
+finden.
+
+Das JUnit 5 Erweiterungsmodell bietet uns an dieser Stelle zwei
+Optionen an, die auch leicht kombinierbar sind. Erstens können wir das
+`InstancePostProcessor` API implementieren, um Mocks in die Felder der
+Testinstanz zu injizieren. Das deckt die Funktionalität des
+`MockitoJUnitRunner` sowie der `MockitoRule` ab. Zweitens können wir
+auch _Dependency Injection_ für Methoden-Parameter unterstützen, indem
+unsere `TestExtension` gleichzeitig das `MethodParameterResolver` API
+implementiert. Das einzige Problem an der Stelle ist, dass die `@Mock`
+Annotation von Mockito nicht auf Methodenparameter deklariert werden
+darf. Das lösen wir aber schnell, indem wir eine eigene `@InjectMock`
+Annotation wie folgt deklarieren.
+
+.InjectMock
+[source,java]
+----
+@Target(ElementType.PARAMETER)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface InjectMock {
+}
+----
+
+Die nächste Aufgabe ist, die `TestExtension` zu entwickeln. Wie unten
+sichtbar, implementiert unsere `MockitoExtension` die
+`InstancePostProcessor` und `MethodParameterResolver` APIs. Die 
+Methode `postProcessTestInstance()` verwendet die vorher erwähnte
+Methode `MockitoAnnotations.initMocks()` von Mockito, aber an dieser
+Stelle wird die Testinstanz aus dem jetzigen `TestExtensionContext`
+geholt. Damit ist _Dependency Injection_ für Felder in Testklassen
+abgedeckt.
+
+Um _Dependency Injection_ für Methoden-Parameter zu implementieren, müssen
+wir noch ein bisschen mehr selbst leisten. Erstens entscheidet die
+Methode `supports()`, ob die `MockitoExtension` Parameter auflösen kann,
+die mit `@InjectMock` annotiert sind. Zweitens sorgt die
+Methode `resolve()` dafür, dass der richtige Mock an die Testmethode
+weitergegeben wird. Die Mock-Instanzen werden in einer `Map`
+nach Typ hinterlegt.
+
+.MockitoExtension
+[source,java]
+----
+import static org.mockito.Mockito.mock;
+
+public class MockitoExtension
+  implements InstancePostProcessor, MethodParameterResolver {
+
+	private final Map<Class<?>, Object> mocks = new ConcurrentHashMap<>();
+
+	@Override
+	public void postProcessTestInstance(TestExtensionContext context) {
+		MockitoAnnotations.initMocks(context.getTestInstance());
+	}
+
+	@Override
+	public boolean supports(Parameter parameter,
+			MethodContext methodContext,
+			ExtensionContext extensionContext) {
+
+		return parameter.isAnnotationPresent(InjectMock.class);
+	}
+
+	@Override
+	public Object resolve(Parameter parameter,
+			MethodContext methodContext,
+			ExtensionContext extensionContext)
+				throws ParameterResolutionException {
+
+		return getMock(parameter.getType());
+	}
+
+	private Object getMock(Class<?> mockType) {
+		return this.mocks.computeIfAbsent(mockType, type -> mock(type));
+	}
+
+}
+----
+
+Die Klasse `MockitoDependencyInjectionTests` zeigt, wie die
+`MockitoExtension` verwendet wird.
+
+.MockitoDependencyInjectionTests
+[source,java]
+----
+@ExtendWith(MockitoExtension.class)
+class MockitoDependencyInjectionTests {
+
+	@Mock
+	NumberGenerator numberGenerator;
+
+	@BeforeEach
+	void initialize(@InjectMock Person person, @TestName String testName) {
+		when(person.getName()).thenReturn(testName);
+		when(this.numberGenerator.next()).thenReturn(42);
+	}
+
+	@Test
+	@Name("Yoda")
+	void injectedMocksOne(@InjectMock Person person) {
+		assertEquals("Yoda", person.getName());
+		assertEquals(42, this.numberGenerator.next());
+	}
+
+	@Test
+	@Name("Dilbert")
+	void injectedMocksTwo(@InjectMock Person person) {
+		assertEquals("Dilbert", person.getName());
+		assertEquals(42, this.numberGenerator.next());
+	}
+
+}
+----

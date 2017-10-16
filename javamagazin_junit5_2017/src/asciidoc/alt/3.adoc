@@ -1,0 +1,235 @@
+== Programmiermodell und Test API
+
+Die hier vorgestellten Beispiele basieren auf dem Milestone Alpha M1.
+Bis zum ersten JUnit 5 Release können sich daher noch Veränderungen ergeben.
+Tests in JUnit 5 sehen den Tests aus der vorherigen Version sehr ähnlich.
+Auf den ersten Blick ist fast kein Unterschied zu erkennen. Diese Entscheidung
+wurde bewusst getroffen, damit der Umstieg zu JUnit 5 leicht fällt.
+
+.SinglePassingTestSampleClass
+[source,java]
+----
+class SinglePassingTestSampleClass {
+	@Test
+	void singlePassingTest() {
+		System.out.println("Test got executed!");
+	}
+}
+----
+
+Im Detail sind dennoch maßgebliche Veränderungen sichtbar. So ist es nicht
+mehr notwendig, dass Test-Klassen und Test-Methoden mit dem Keyword
+`public` versehen werden, um den Test-Code schlanker zu machen.
+
+Alle Annotationen für JUnit 5 befinden sich in einem eigenen Package namens
+`org.junit.gen5.api`. Spätestens nach einem Blick in dieses Package wird
+ersichtlich, dass es im Kern deutliche Unterschiede und Verbesserungen zu
+JUnit 4 gibt, auf die wir nun im Detail eingegangen.
+
+=== Selbstdefinierte Namen
+
+Jeder Test-Klasse und jeder Test-Methode kann ein selbstdefinierter Name
+zugewiesen werden. Dieser Name wird im Ergebnis anstelle des Klassen- oder
+Methodennamens als Beschreibung angezeigt und erlaubt auch den Einsatz von
+Leer- und Sonderzeichen.
+
+.AdvancedSinglePassingTestSampleClass
+[source,java]
+----
+@Name("My custom test-class name")
+class AdvancedSinglePassingTestSampleClass {
+	@BeforeAll
+	static void myBeforeAllMethod() {
+		// executed once before the first
+		// test method in this test class
+	}
+
+	@AfterAll
+	static void myAfterAllMethod() {
+		// executed once after the last
+		// test method in this test class
+	}
+
+	@BeforeEach
+	void myBeforeEachMethod() {
+		// executed before each
+		// test method in this test class
+	}
+
+	@AfterEach
+	void myAfterEachMethod() {
+		// executed after each
+		// test method in this test class
+	}
+
+	@Test
+	@Name("My custom test-method name")
+	void singlePassingTest() {
+		System.out.println("Test got executed!");
+	}
+}
+----
+
+=== Before / After Methoden
+
+Die Code-Ausführungen vor und nach jedem Tests werden weiterhin unterstützt
+und sind durch die Verwendung von `BeforeAll`, `BeforeEach`, `AfterEach` und
+`AfterAll` nun expliziter in der Ausdruckweise der Annotationen. Das Verhalten
+der Methoden entspricht exakt dem heutigen Prinzip von JUnit 4.
+
+Unter der Haube haben sich gerade in diesem Bereich viele Änderungen ergeben.
+Im nächsten Kapitel wird das neue Modell für Extensions vorgestellt, das hier
+tiefere Einblicke mitbringt.
+
+=== Tests deaktivieren / ignorieren
+
+Die Ausführung von Tests kann in JUnit 4 mit der Annotation `@Ignore`
+verhindert werden. In JUnit 5 wird das Deaktivieren von Tests flexibler
+möglich sein. Mithilfe von ++Condition++s können verschiedene Einschränkungen
+angegeben werden, die bei der Ausführung der Tests dynamisch geprüft werden.
+Im einfachsten Fall soll ein Test immer deaktiviert werden. Dafür bietet
+JUnit 5 bereits jetzt die Annotation `@Disabled`. Alle Test-Klassen oder
+Test-Methoden, die mit dieser Annotation versehen sind, werden bei der
+Ausführung ignoriert. Optional kann ein Grund für das Deaktivieren mit
+angegeben und dokumentiert werden.
+
+.ConditionTestsSampleClass
+[source,java]
+----
+class ConditionTestsSampleClass {
+	@Test
+	@Disabled("reason: not yet implemented, see ticket #32")
+	void stillFailingTest() {
+		fail("not yet implemented!");
+	}
+}
+----
+
+Zum Release können noch weitere ++Condition++s hinzukommen, wie z.B. das
+Ausführen von Tests in Abhängigkeit von Umgebungsvariablen oder
+Konfigurationsparametern. Es ist zudem vorgesehen, dass zukünftig eigene
+++Condition++s innerhalb des Projekts selbst definiert werden können.
+
+=== Tags und Meta-Annotations
+
+Neben ++Condition++s erlaubt JUnit 5 auch das Taggen von Tests und die
+Filterung nach Tests für ein oder mehrere Tags gesetzt wurden. Über dieses
+Feature können bspw. Test-Gruppen erstellt werden.
+
+.TagsAndMetaAnnotationsSampleClass
+[source,java]
+----
+class TagsAndMetaAnnotationsSampleClass {
+	@Test
+	@Tag("fast")
+	void testTaggedAsRunningFast1() throws Exception {
+		System.out.println("I am running very fast!");
+	}
+
+	@MyFastTest
+	void testTaggedAsRunningFast2() throws Exception {
+		System.out.println("I am running very fast, too!");
+	}
+}
+----
+
+Zusätzlich werden Meta-Annotations -- d.h. Annotationen auf Annotationen --
+unterstützt, so dass eigene Gruppen erstellt und im Projekt vorgegeben werden
+können. Als Beispiel wurde hier eine Gruppe `MyFastTest` angelegt, die eine
+Methode als Test kennzeichnet und sie mit dem Tag "fast" markiert. Im
+konkreten Fall werden also beide Methoden identisch behandelt.
+
+Die entsprechende Annotation ist sehr einfach selbst zu schreiben:
+
+.MyFastTest
+[source,java]
+----
+@Test
+@Tag("fast")
+public @interface MyFastTest {
+}
+----
+
+=== Entfall von `expected` und `timeout`
+
+Eine weitere Änderung ist der Wegfall der Properties `expected` und `timeout`
+auf der Annotation `@Test`. Durch den Einsatz von Lambdas lassen sich diese
+Semantiken ausdrucksstärker formulieren. Hier bieten Assertion Frameworks
+(z.B. AssertJ) bereits gute Lösungen an,
+für den Puristen bringt jedoch auch JUnit 5 bereits eine einfache Variante mit:
+
+.ExpectedExceptionSampleClass
+[source,java]
+----
+class ExpectedExceptionSampleClass {
+	@Test
+	void testWithExpectedException() {
+		IllegalArgumentException thrown = expectThrows(IllegalArgumentException.class, () -> {
+			// code that throws exception
+		});
+		assertEquals("foo", thrown.getMessage());
+	}
+}
+----
+
+
+=== Dependency / Parameter Injection
+
+Als neues Feature unterstützt JUnit 5 das Auflösen von Abhängigkeiten in Form
+von Methoden-Parametern. Ein Beispiel dafür ist das Auswerten des Testnamens.
+Dies wird bereits von JUnit 5 unterstützt, so dass der Name der Test-Methode
+in Fehlermeldungen oder Ausgaben verwendet werden kann.
+
+.ParameterInjectionTestSampleClass
+[source,java]
+----
+class ParameterInjectionTestSampleClass {
+	@Test
+	@Name("MyName")
+	void injectTestName(@TestName String testname) throws Exception {
+		// prints: Test MyName got executed!
+		System.out.println("Test " + testname + " got executed!");
+	}
+}
+----
+
+Die Funktionsweise und die Erweiterungsmöglichkeiten dieses Features werden im
+nachfolgenden Kapitel im Detail erläutert.
+
+=== Verschachtelung von Test-Klassen
+
+JUnit 5 unterstützt die Verschachtelung von Test-Klassen. Mittels der
+Annotation `@Nested` können innere Klassen als Test-Klassen deklariert werden.
+Tests können über dieses Feature hierarchisch zu Gruppen zusammengefasst
+werden, um den Tests mehr Übersicht zu geben.
+
+.NestedTestsSampleClass
+[source,java]
+----
+class NestedTestsSampleClass {
+	@Test
+	void testOnTopLevel() {
+	}
+
+	@Nested
+	class NestedTest {
+		@Test
+		void testOnNestedLevel() {
+		}
+
+		@Nested
+		class DoubleNestedTest {
+			@Test
+			void testOnDoubleNestedLevel() {
+			}
+		}
+	}
+}
+----
+
+Auf diese Art und Weise lassen sich auch Testfälle für Hierarchien
+übersichtlich aufstellen. Es ist nach wie vor möglich, dass Test-Klassen von
+bestehenden Test-Klassen ableiten und darüber die Tests der Superklasse erben.
+Ebenso können statische innere Klassen definiert werden. Diese werden von
+JUnit 5 nun wie top-level Test-Klassen behandelt und parallel zur
+enthaltenden Klasse im Testplan angezeigt.

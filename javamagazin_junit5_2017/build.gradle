@@ -2,9 +2,14 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        jcenter()
+
+
     }
     dependencies {
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
+        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.3'
+        classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.10.1'
     }
 }
 
@@ -22,6 +27,7 @@ ext.junit4Version        = '4.12'
 
 apply plugin: 'java'
 apply plugin: 'org.junit.platform.gradle.plugin'
+apply plugin: 'org.asciidoctor.convert'
 
 jar {
     baseName = 'demo'
@@ -44,6 +50,26 @@ junitPlatform {
     //}
     enableStandardTestTask true
 }
+
+asciidoctor {
+    backends 'html5','pdf'
+    sourceDir 'src/asciidoc'
+
+    sources { include 'main.adoc' }
+
+    resources {
+        from(sourceDir) { include 'images/**/*.png','images/**/*.jpg' }
+    }
+
+    options = [	safe: 'UNSAFE' ]
+
+    attributes 'testDir': project.sourceSets.test.java.srcDirs[0],
+            'source-highlighter': 'coderay',
+            'tabsize': '4',
+            'icons': 'font',
+            'allow-uri-read': 'true'
+}
+
 
 dependencies {
     compile 'org.mockito:mockito-core:2.+'

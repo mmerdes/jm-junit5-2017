@@ -1,0 +1,48 @@
+== Integrationen
+
+=== Alte JUnit 4 Tests mit JUnit 5 ausführen
+
+Wie bereits erwähnt, ermöglicht es die neue Architektur, JUnit 4 und JUnit 5 
+Tests im selben Testlauf auszuführen. Ist das Artefakt _junit4-engine_ zur 
+Laufzeit der Tests auf dem _Classpath_, werden JUnit 4 Tests gefunden und 
+ausgeführt.
+
+Somit ist es möglich, neue Tests mit JUnit 5 zu schreiben und alte Tests 
+weiterhin JUnit 4 verwenden zu lassen. Jedes Projekt-Team kann dann selbst 
+entscheiden, ob und wann es seine JUnit 4 Tests auf JUnit 5 umstellt. Neue 
+Features werden jedoch nur in JUnit 5 eingebaut werden.
+
+=== Neue JUnit 5 Tests mit JUnit 4 ausführen
+
+Da es unter Umständen eine Weile dauern wird, bis alle IDEs und Build Tools 
+eine Unterstützung für JUnit 5 mitbringen bzw. nicht jeder Entwickler stets die 
+neuste Version seiner IDE bzw. seines Build Tools verwenden kann, werden wir 
+eine Implementierung von `Runner` (JUnit 4 API) namens `JUnit5` mitliefern, die 
+es ermöglicht, einen JUnit 5 Test mit JUnit 4 auszuführen. Dieser `Runner` wird 
+nicht alle Features unterstützen können, die JUnit 5 bietet, ist als 
+Übergangslösung aber durchaus zu gebrauchen.
+
+Der `Runner` kann entweder für einen einzelnen JUnit 5 Test verwendet werden 
+(s. `SingleJUnit5TestRunWithJUnit4`) oder, ähnlich dem `Suite` Runner, um eine 
+Menge von JUnit 5 Tests auf einmal auszuführen (s. `JUnit4SuiteOfJUnit5Tests`).
+
+[source,java]
+.Einzelner JUnit 5 Test, der mit JUnit 4 ausführbar ist
+----
+include::{testDir}/org/junit/example/SingleJUnit5TestRunWithJUnit4.java[tags=complete]
+----
+
+[source,java]
+.JUnit 4 Test Suite, die alle Tests im Package "org.junit.example" ausführt
+----
+include::{testDir}/org/junit/example/JUnit4SuiteOfJUnit5Tests.java[tags=complete]
+----
+
+=== JUnit 4/5 Tests mit Gradle/Maven ausführen
+
+Das JUnit Lambda Team hat in der Prototyp-Phase eigene Plugins geschrieben, die 
+es ermöglichen JUnit 5 Tests mit Gradle und Maven auszuführen. Perspektivisch 
+soll die Weiterentwicklung und Wartung dieser Plugins aber an die Maintainer 
+von Gradle und Maven Surefire abgeben werden. Auf GitHub [5] findet man 
+Beispielprojekte, die demonstrieren, wie man JUnit 5 Tests im Build-Prozess mit 
+Gradle bzw. Maven ausführt.

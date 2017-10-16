@@ -1,0 +1,23 @@
+
+
+== Fazit und Ausblick
+
+In diesem Artikel haben wir einen ersten Überblick über Architektur und API der nächsten Generation von JUnit gegeben.
+Ein besonderes Augenmerk beim Design lag auf der einfachen Erweiterbarkeit
+und insbesondere auf der Möglichkeit, Erweiterungen frei zu kombinieren.
+
+Ziel ist es weiterhin, eng mit den Tool-Herstellern zusammenzuarbeiten,
+um eine frühzeitige Integration in die wichtigsten Werkzeuge zu erreichen.
+Potentielle Early Adopter seien noch einmal auf die prototypischen Gradle- und Maven-Integration hingewiesen,
+außerdem natürlich auf die Brücke zu JUnit 4,
+mit der man heute schon JUnit 5 Tests auch in alten Infrastrukturen ausführen kann,
+sowie auf den Console-Runner, der JUnit 5 Tests auf der Konsole ausführt.
+
+Wie bereits erwähnt, befindet sich JUnit 5 noch im Alpha-Stadium.
+Es ist abzusehen, dass es noch Änderungen sowohl am API als auch am Funktionsumfang geben wird.
+Auch hat der gegenwärtige Entwicklungsstand noch keineswegs Produktionsqualität.
+Weiterhin ist jetzt ein guter Zeitpunkt,
+um die Entwicklung von JUnit 5 durch kritisches Feedback zu begleiten,
+was durch Kommentieren des GitHub-Projektes [6] leicht geschehen kann.
+Wenn die Arbeiten an JUnit 5 weiter planmäßig weiterlaufen,
+dann ist noch in diesem Jahr mit einem Beta-Release und einer Version 5.0 zu rechnen.

@@ -2,7 +2,7 @@
 == Architektur: Platform, Testengines und Extensions
 
 
-== JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
+=== JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
 
 Eines der Hauptziele bei der Neuentwicklung von JUnit 5 war die
 logische Trennung der Rollen zum Verfassen eines Tests und zur Ausführung von Tests.
