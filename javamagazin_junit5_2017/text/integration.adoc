@@ -59,6 +59,6 @@ die CI-Builds laufen schon seit einigen Monaten sowohl gegen Java 8 als auch Jav
 Die Modulinformation wird derzeit noch generisch automatisch generiert,
 d.h. dass im Moment noch alle Klassen physisch verwendbar sind.
 Um für die Zukunkft gewappnet zu sein,
-sollte man als Integrateur oder Endanwender jedoch bereits jetzt auf die Vewendung von Klassen verzichten,
+sollte man als Integrateur oder Endanwender jedoch bereits jetzt auf die Verwendung von Klassen verzichten,
 die mit `@API(Status.INTERNAL)` annotiert sind.
 
