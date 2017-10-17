@@ -21,7 +21,6 @@ class DynamicFibonacciDemo {
                 .map(number -> dynamicTest("Fibonacci = " + number,
                         () -> isOdd(number))
                 );
-
     }
 
     void isOdd(int candidate) {
