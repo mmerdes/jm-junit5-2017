@@ -2,9 +2,8 @@
 
 Das Test-Framework JUnit hat seit dem ersten Release im Jahr 2000 wesentlich dazu beigetragen,
 testgetriebene Entwicklung zu ermöglichen.
-Der Legende nach wurde es ursprünglich von Kent Beck und Erich Gamma im Flugzeug per Pair-Programming entwickelt [1].
-JUnit wurde auf zahlreiche andere Plattformen portiert
-und war Vorbild für viele andere Test-Frameworks.
+Der Legende nach wurde es ursprünglich von Kent Beck und Erich Gamma im Flugzeug per Pair-Programming entwickelt [1]
+und war seitdem Vorbild für viele andere Test-Frameworks.
 Nach einer aktuellen Untersuchung vom Juli diesen Jahres [2] ist JUnit die am meisten verwendete Java-Bibliothek überhaupt.
 
 Nach vielen Jahren der Weiterentwicklung und Wartung war JUnit 4 bei Version 4.12 angelangt.
@@ -15,7 +14,7 @@ stellte sich als zunehmend hinderlich für die Weiterentwicklung heraus.
 Dazu kommt, dass die vorherigen Versionen naturgemäß keine Sprachfeatures von Java 8 unterstützen konnten,
 weil stets die Kompatibilität zu Java 5 gewahrt bleiben musste.
 
-Nach längerer Zeit ohne neues Major Release und ohne grundlegende Modernisierungsmöglichkeit
+Nach längerer Zeit ohne neue Releases und ohne grundlegende Modernisierungsmöglichkeit
 hat im Oktober 2015 die Entwicklung der vollständig überarbeiteten Version 5 begonnen.
 Nach einer Startfinanzierung durch die Crowdfunding-Kampagne "JUnit Lambda"
 begann im Oktober 2015 die Planung der neuen Version bei einem Workshop mit dem Core-Committer-Team
@@ -45,13 +44,13 @@ unterstützt die neue JUnit-Plattform die Koexistenz verschiedener Testengines.
 
 image::images/hello_code.png[]
 
-Über die import-Statements hinaus erkennt man sogleich,
-dass sich die Namen der anderen Lifecycle-Methoden im Vergleich zu JUnit 4 geändert haben.
+Man erkennt sogleich,
+dass sich die Namen der Lifecycle-Methoden im Vergleich zu JUnit 4 geändert haben.
 Die neue Nomenklatur ist das Ergebnis langer Diskussionen
 [REF: https://github.com/junit-team/junit5/issues/163 ]
 und versucht,
 die Bedeutung noch deutlicher hervorzuheben, als das bisher der Fall war.
-Im Einzelnen werden folgende Annotationen unterstützt:
+Zu den wichtigsten Annotationen gehören die Folgenden:
 @BeforeAll wird einmal pro Testklasse aufgerufen, @BeforeEach vor jeder einzelnen Testmethode;
 analoges gilt für die After-Methoden.
-
+Erwähnenswert ist ebenfalls, dass der Modifier `public` entfallen kann.
