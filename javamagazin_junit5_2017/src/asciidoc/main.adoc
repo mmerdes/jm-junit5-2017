@@ -3,6 +3,7 @@
 = Beim Jupiter: JUnit 5 ist da!
 Matthias Merdes
 
+
 include::intro.adoc[]
 
 
@@ -15,19 +16,5 @@ include::integration.adoc[]
 
 include::fazit.adoc[]
 
-
-== Links & Literatur
-
-[horizontal]
-
-[1]:: Martin Fowler: XUnit
-      http://www.martinfowler.com/bliki/Xunit.html
-
-[2]:: Henn Idan:
-      The Top 100 Java Libraries in 2017 - Based on 259,885 Source Files
-      http://blog.takipi.com/the-top-100-java-libraries-in-2017-based-on-259885-source-files/
-
-
-[55]:: JUnit 5 Beispielprojekte mit Gradle/Maven,
-      https://github.com/junit-team/junit5-samples
+include::referenzen.adoc[]
 
