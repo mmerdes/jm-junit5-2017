@@ -10,7 +10,9 @@ ist möglicherweise sogar die grundlegend neu konzipierte Architektur,
 die erstmals zwischen allgemeiner und stabiler Plattform einerseits und verschiedenen Engines andrerseits unterscheidet.
 Nicht zuletzt ermöglicht die Plattform eine saubere und mächtige Einbindung belieber Engines in IDEs und Build-Tools.
 
-Wir danken den Kollegen vom JUnit 5-Team und Johannes Link,
+Ein großes Dankeschön geht an die Kollegen
+Marc Philipp, Sam Brannen, Christian Stein und Stefan Bechtold vom JUnit 5-Team
+sowie an Johannes Link,
 der nicht nur diesen Artikel korrekturgelesen hat,
 sondern auch die Überlegungen zur grundlegend neuen Architektur wesentlich mitgestaltet hat.
 Dank gebührt auch den vielen frühen Anwendern,
