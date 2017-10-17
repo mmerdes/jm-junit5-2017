@@ -11,6 +11,7 @@ die das neue JUnit 5-Programmiermodell unterstützt.
 Wie im Abschnitt über die Architektur weiter ausgeführt
 unterstützt die neue JUnit-Plattform die Koexistenz verschiedener Testengines.
 
+.Hello TestWorld!
 image::images/hello_code.png[HelloWorld, 200, float="left",align="left"]
 
 Man erkennt sogleich,

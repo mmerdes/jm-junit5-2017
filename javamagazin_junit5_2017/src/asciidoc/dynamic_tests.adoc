@@ -21,6 +21,7 @@ Lässt man z.B. das folgende Beispiel in einer IDE ablaufen,
 so sieht man, dass die einzelnen Knoten tatsächlich erst zur Laufzeit
 bei der Durchführung des gerade entstandenen Tests zur graphischen Darstellung hinzugefügt werden.
 
+.Dynamische Tests im Code
 image::images/dynamic_fibonacci_code.png[DynamicTest, 400, float="left",align="left"]
 
 Im Beispiel geht man von einem Stream natürlicher Zahl aus
@@ -32,6 +33,7 @@ Auch wenn in diesem Beispiel bereits zum Zeitpunkt der Testerstellung
 die Folge auf 12 Testfälle begrenzt wird,
 so könnte man jederzeit ein erst zur Laufzeit berechnetes Abbruchkriterium verwenden.
 
+.Ausführung Dynamischer Tests in der IDE
 image::images/dynamic_fibonacci_ide.png[DynamicTestIDE, 200, float="left",align="left"]
 
 Eine solche Funktionalität lässt sich mit Hilfe von Lambda-Ausdrücken elegant realisieren.
@@ -56,7 +58,9 @@ Im folgenden Beispiel werden die Parameter der Einfachheit halber mit Hilfe der 
 @ParameterizedTest ist eine Anwendung des allgemeineren TestTemplate-Konzepts,
 mit dessen Hilfe auch das verwandte `@RepeatedTest` umgesetzt ist.
 
+.Parametrisierte Tests im Code
 image::images/parameterized_code.png[ParameterizedTestIDE, 300, float="left",align="left"]
+
 
 Zusammenfassend lässt sich sagen, dass beide Varianten es ermöglichen, eine Gruppe von Testfällen zu erzeugen,
 deren Anzahl zuvor nicht bekannt ist.
@@ -64,6 +68,7 @@ Die Auswahl einer Variante kann dadurch geleitet werden,
 ob man Lifecycle-Support auf Testfall-Ebene benötigt
 und ob die parametrisierenden Werte sich im Test leicht berechnen lassen oder aus externen Quellen bezogen werden müssen.
 
+.Ausführung Parametrisierter Tests in der IDE
 image::images/parameterized_ide.png[ParameterizedTestIDE, 250, float="left",align="left"]
 
 
