@@ -14,7 +14,7 @@ Ein großes Dankeschön geht an die Kollegen
 Marc Philipp, Sam Brannen, Christian Stein und Stefan Bechtold vom JUnit 5-Team
 sowie an Johannes Link,
 der nicht nur diesen Artikel korrekturgelesen hat,
-sondern auch die Überlegungen zur grundlegend neuen Architektur wesentlich mitgestaltet hat.
+sondern vor allem auch die Überlegungen zur grundlegend neuen Architektur wesentlich mitgestaltet hat.
 Dank gebührt auch den vielen frühen Anwendern,
 die die Entwicklung von JUnit 5 in den letzten zwei Jahren durch Feedback und Diskussionen begleitet haben.
 

@@ -17,8 +17,7 @@ Der Surefire Provider wurde bereits an das entsprechende Apache-Projekt übergeb
 um dort weiterentwickelt zu werden;
 für das Gradle Plugin ist ein ähnliches Vorgehen in Vorbereitung.
 Möchte man eine JUnit 5-Projekt mit Maven oder Gradle neu aufsetzen,
-so lohnt sich ein Blick auf die entsprechenden Beispielprojekte
-[   Referenz   ], [   Referenz   ]
+so lohnt sich ein Blick auf die entsprechenden Beispielprojekte [8].
 
 // - Gradle: https://github.com/junit-team/junit5-samples/tree/master/junit5-vanilla-gradle
 // - Maven: https://github.com/junit-team/junit5-samples/tree/master/junit5-vanilla-maven
