@@ -7,7 +7,7 @@ und einzelnen Testmethoden zu verwenden,
 so dass sich übersichtliche und gut lesbare Baumdarstellungen in der GUI der IDE erzielen lassen.
 
 
-image::images/displayname_code.png[]
+image::images/displayname_code.png[DisplayName, 350, float="left",align="left"]
 
 
 Dies ergibt in der Ausführung eine saubere Darstellung in der IDE.
@@ -17,5 +17,5 @@ zwischen der Baumansicht und dem Sourcecode zu navigieren.
 Dies wird dadurch ermöglicht, dass die JUnit Platform der IDE die Möglichkeit gibt,
 einzelne Tests sauber zu referenzieren ohne reflexiv auf den Methodennamen zuzugreifen.
 
-image::images/displaynames_ide.png[]
+image::images/displaynames_ide.png[XXXX, 300, float="left",align="left"]
 

@@ -21,7 +21,7 @@ Die Weiterentwicklung von JUnit 4 wurde dadurch immens erschwert,
 in Teilen sogar nahezu unmöglich gemacht.
 
 .Gesamtarchitektur von JUnit 5
-image::images/architektur.png[]
+image::images/architektur.png[Architektur, 400, float="left",align="left"]
 
 Wie das oben abgebildete Architekturdiagramm zeigt,
 wurde beim Entwurf von JUnit 5 großer Wert darauf gelegt,

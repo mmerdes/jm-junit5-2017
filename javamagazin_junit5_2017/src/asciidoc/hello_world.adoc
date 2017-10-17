@@ -11,7 +11,7 @@ die das neue JUnit 5-Programmiermodell unterstützt.
 Wie im Abschnitt über die Architektur weiter ausgeführt
 unterstützt die neue JUnit-Plattform die Koexistenz verschiedener Testengines.
 
-image::images/hello_code.png[]
+image::images/hello_code.png[HelloWorld, 200, float="left",align="left"]
 
 Man erkennt sogleich,
 dass sich die Namen der Lifecycle-Methoden im Vergleich zu JUnit 4 geändert haben.

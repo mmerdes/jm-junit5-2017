@@ -6,7 +6,7 @@ Eine weitere Neuerung,
 die vor allem aus dem Spring Framework und anderen Dependency-Injection-Mechanismen bekannt ist,
 ist die Möglichkeit zur Parameter-Injection.
 
-image::images/parameter_injection.png[]
+image::images/parameter_injection.png[XXXX, 300, float="left",align="left"]
 
 Durften Testmethoden in den bisherigen Versionen von JUnit keine Argumente haben,
 so fällt diese Einschränkung mit JUnit Jupiter weg.
