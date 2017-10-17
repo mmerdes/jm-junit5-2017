@@ -8,8 +8,8 @@ import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 class DynamicFibonacciDemo {
 
