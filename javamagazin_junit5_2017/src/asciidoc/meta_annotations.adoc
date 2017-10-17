@@ -12,7 +12,7 @@ so kann es sinnvoll sein, sich eines neu eingeführten Mechanismus' zu bedienen.
 So wird nämlich für alle im Jupiter-API vorhandenen Annotationen eine Komposition von Annotationen zu Meta-Annotationen unterstützt.
 Ähnliche Mechanismen sind wieder aus dem Spring Framework oder auch aus der Programmiersprache Groovy bekannt.
 
-image::images/tagging.png[]
+image::images/metaannotation.png[]
 
 Im Beispiel werden besonders schnell ausführbare Tests durch die Meta-Annotation @FastTest gekennzeichnet,
 z.B. weil man sie aus Fast-Feedback-Gründen im Build zuerst ausführen möchte.
