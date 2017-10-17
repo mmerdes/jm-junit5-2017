@@ -6,9 +6,9 @@ Matthias Merdes
 include::intro.adoc[]
 
 
-include::architektur.adoc[]
-
 include::neuerungen.adoc[]
+
+include::architektur.adoc[]
 
 include::integration.adoc[]
 
