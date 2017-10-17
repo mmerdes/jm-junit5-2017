@@ -16,7 +16,7 @@ So scheiterte z.B. der Versuch,
 die Version 4.12-beta-1 in Kombination mit einer bekannten IDE zu betreiben,
 weil die IDE eine private Variable, die umbenannt worden war, per Reflection referenziert hatte.
 Diese Art der Integration war der Tatsache geschuldet,
-dass es eben kein explizites API für die Integration in Tools gab.
+dass es eben kein ausreichend mächtiges API für die Integration in Tools gab.
 Die Weiterentwicklung von JUnit 4 wurde dadurch immens erschwert,
 in Teilen sogar nahezu unmöglich gemacht.
 
@@ -35,14 +35,16 @@ um die Ausführung von Tests anzustoßen.
 Der darin enthaltene _Launcher_ orchestriert das Auffinden
 und die Ausführung von Tests durch verschiedene _Engines_.
 
-Die Engine-Abstraktion ermöglicht die Koexistenz verschiedener Testengines,
+Die Engine-Abstraktion ermöglicht die Koexistenz verschiedener Testframeworks bzw. -bibliotheken,
 und damit insbesondere auch die Ausführung von Testfällen auf Basis von JUnit 4 und JUnit 5 innerhalb eines einzigen Testlaufs.
 Dies impliziert, dass man bei existierenden Projekten auf Basis von JUnit 4 langsam mit einigen JUnit 5-Tests beginnen kann
 und keineswegs gezwungen ist, eine Big-Bang-Migration durchzuführen.
-Weitere Hilfen für die Migration finden sich im Artefakt 'junit-jupiter-migrationsupport'.
+Weitere Hilfen für die Migration wie etwa der Support ausgewählter Rules finden sich im Artefakt 'junit-jupiter-migrationsupport'.
 Um von einem integrierenden Tool angesprochen zu werden,
 müssen Test-Engines lediglich auf dem Klassenpfad vorhanden sein
-und sich über den normalen _ServiceLoader_-Mechanismus der JVM beim Launcher registrieren.
+und sich über den normalen _ServiceLoader_-Mechanismus der JVM
+[referenz: https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html]
+beim Launcher registrieren.
 
 Die Engine-Implementierungen hängen dabei nur vom Artefakt _junit-platform-engine_ ab.
 JUnit 5 liefert zwei Engines aus:
@@ -53,9 +55,12 @@ Solche Frameworks müssen nur eine Engine-Implementierung bereitstellen,
 und profitieren sofort von der Integration,
 die die Tool-Hersteller für die JUnit 5-Plattform einmalig erstellt haben.
 Da eine Engine-Implementierung in vielen Fällen recht einfach zu erstellen ist
-[  Referenz vortrag jax 17],
+[  Referenz vortrag jax 17 ],
 sinkt somit die Schwelle,
 ein sauber integriertes Test-Framework einem weiteren Benutzerkreis zur Verfügung zu stellen.
+Einige Projekte haben bereits gegen Milestone-Releases von JUnit 5 eigene Engines implementiert,
+z.B. die jqwik-Engine für Property-Based Testing [ REFerenz ]
+oder das BDD-Framework Specsy. [ REFerenz ]
 
 Zusammenfassend lässt sich sagen,
 dass das neue JUnit 5 erstmalig eine Plattform-Abstraktion zur Integration bereitstellt,

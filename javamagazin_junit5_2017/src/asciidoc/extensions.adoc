@@ -37,6 +37,9 @@ was präzise ausdrücken lässt, für welche Methoden welche Mocks bestimmt sind
 Neben den beiden hier genannten ExtensionPoints gibt es eine ganz Reihe anderer,
 etwa zur Handhabung von Ausnahmen und insbesondere zur Interaktion mit den benutzerdefinierten Methoden des Test-Lifecycle
 (z.b. @BeforeAll und BeforeAllCallback).
+Benötigt man in einer Extension einen Zustand über verschiedene Aufrufe hinweg,
+so sollte man diesen im bereitgestellten `ExtensionContext.Store` ablegen,
+um Probleme bei der Komposition von Extensions zu vermeiden.
 
 Zusammenfassend lasst sich sagen,
 dass man entweder auf einer sehr hohen Granularitätsebene eine eigene Testengine implementieren kann
