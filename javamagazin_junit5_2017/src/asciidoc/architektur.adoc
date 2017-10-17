@@ -6,7 +6,7 @@
 
 Eines der Hauptziele bei der Neuentwicklung von JUnit 5 war die
 logische Trennung der Rollen zum Verfassen eines Tests und zur Ausführung von Tests.
-Physich spiegelt sich das in der Entkopplung der APIs zum Schreiben von denen zum Ausführen von Tests wider.
+Physisch spiegelt sich das in der Entkopplung der APIs zum Schreiben von denen zum Ausführen von Tests wider.
 In JUnit 4 sind beide APIs in einem Artefakt enthalten.
 Alle, die JUnit auf irgendeine Weise verwenden, hängen von diesem einzigen jar-File ab,
 unabhängig davon, ob es sich dabei um IDEs, Build Tools, andere Test-Frameworks oder Testcode handelt.

@@ -1,11 +1,10 @@
 
 == Die wichtigsten Neuerungen für Entwickler
 
-
-Die im letzten Abschnitt beschriebene Architektur mit Plattform, Engines und Extensions
-ist vor allem für integrierende Tools bzw. für Entwickler von Erweiterungen relevant.
-Im Folgenden sollen nun einige neue Features vorgestellt werden,
+In diesem Abschnitt sollen einige neue Features vorgestellt werden,
 die für das _Schreiben_ von Tests und damit für alle Entwickler wichtig sind.
+Alles Folgende bezieht sich auf die neue JUnit Jupiter Testengine,
+die im Abschnitt über Architektur weiter beschrieben wird.
 
 
 include::hello_world.adoc[]

@@ -1,9 +1,8 @@
 
 === Extensions
 
-Bevor wir einige der wesentlichen Neuerungen für Testautoren vorstellen,
-soll zunächst noch das neue Extensionmodell vorgestellt werden.
-Im Gegensatz zu den gerade beschriebenen Testengines,
+Im Folgenden soll überblicksartig das neue Extensionmodell vorgestellt werden.
+Im Gegensatz zu den zuvor beschriebenen Testengines,
 die es ermöglichen, beliebige Testdefinitionen und Ausführungssemantiken zu unterstützen,
 dient das im Folgenden beschriebene Extensionmodell zur Verfeinerung der Jupiter-Engine.
 

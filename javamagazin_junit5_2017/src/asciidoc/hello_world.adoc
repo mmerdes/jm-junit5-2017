@@ -1,9 +1,8 @@
 
 === Hello TestWorld
 
-Bevor in den folgenden Abschnitten die neue Architektur im Detail erklärt wird
-und die wesentlichen Neuerungen an Hand von Beispielen vorgestellt werden,
-soll hier als Einstieg zunächst ein bewusst minimalistisches Beispiel vorgestellt werden.
+Als Einstieg soll zunächst ein bewusst minimalistisches Beispiel dienen,
+bevor einige fortgeschrittene oder grundsätzlich neue Feature vorgestellt werden.
 Naheliegenderweise heißt die wichtigste Annotation immer noch @Test.
 Im Unterschied zu JUnit 4 muss man allerdings ein anderes Package importieren:
 'org.junit.jupiter.api' anstelle von 'org.junit'.

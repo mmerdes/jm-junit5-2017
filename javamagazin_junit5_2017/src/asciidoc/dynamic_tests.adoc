@@ -67,3 +67,5 @@ und ob die parametrisierenden Werte sich im Test leicht berechnen lassen oder au
 image::images/parameterized_ide.png[]
 
 
+Nach diesem Überblick über einige der interessantesten Neuerungen für Entwickler
+werden im Folgenden Gesamtarchitektur sowie Erweiterungsmöglichkeiten beschrieben.

@@ -24,7 +24,8 @@ ist im Sommer 2017 mit der Version 5.0.0 GA das erste Produktionsrelease der neu
 Version 5.1 ist bereits in Planung.
 
 
-Im Folgenden werden wir einen Überblick über die neue Gesamtarchitektur,
-das Programmiermodell und das zugehörige API,
+Im Folgenden werden wir einen Überblick über
+das neue Programmiermodell und das zugehörige API,
+die neue Gesamtarchitektur,
 sowie die Themen Erweiterbarkeit und Integrierbarkeit geben.
 
