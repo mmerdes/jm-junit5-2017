@@ -16,7 +16,7 @@ Insbesondere sind die Erweiterungen aus technischer Sicht beliebig kombinierbar.
 Diesem Thema ließe sich leicht ein ganzer Artikel widmen,
 hier soll nur kurz an Hand eines Beispiels die Grundidee erläutert werden.
 
-image::images/mockito_extension_diagram.png[XXXX, 300, float="left",align="left"]
+image::images/mockito_extension_diagram.png[ExtensionClassDiagramm, 300, float="left",align="left"]
 
 Als Basis aller Erweiterungen für JUnit Jupiter gibt es das Marker-Interface 'Extension'.
 Nehmen wir nun an, dass eine einfache Extension zur Integration des Mockframeworks Mockito erstellt werden soll.
@@ -25,7 +25,7 @@ Konkret müsste eine solche 'MockitoExtension' die beiden ExtensionPoints
 wenn man die Extension dann wie in obiger Abbildung verwenden will.
 Beide ExtensionPoints erweitern wiederum das genannte Marker-Interface.
 
-image::images/mockito_extension_code.png[XXXX, 300, float="left",align="left"]
+image::images/mockito_extension_code.png[ExtensionCode, 300, float="left",align="left"]
 
 In diesem Beispiel wird der ExtensionPoint 'TestInstancePostProcessor' benötigt,
 um über das Mockito-API die Mocks direkt nach Erstellung der Testinstanz zu initialisieren.
