@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-pngpaste  text/images/image.png
-git add   text/images/image.png
+pngpaste  src/asciidoc/images/image.png
+git add   src/asciidoc/images/image.png

@@ -25,8 +25,8 @@ image::images/dynamic_fibonacci_code.png[]
 
 Im Beispiel geht man von einem Stream natürlicher Zahl aus
 und bildet diesen mit Hilfe der Methodenreferenz 'fibonacci' auf Fibonacci-Zahlen ab.
-Diese Fibonacci-Folge wird dann über
-org.junit.jupiter.api.DynamicTest.dynamicTest(String displayName, Executable executable)
+Diese Fibonacci-Folge wird dann über das statisch importierte
+`org.junit.jupiter.api.DynamicTest.dynamicTest(String displayName, Executable executable)`
 auf einen Stream von dynamischen Testfällen abgebildet.
 Auch wenn in diesem Beispiel bereits zum Zeitpunkt der Testerstellung
 die Folge auf 12 Testfälle begrenzt wird,
@@ -48,11 +48,13 @@ Möchte man also,
 dass z.B. @BeforeEach-Methoden für jeden einzelnen einer Menge von Testfällen aufgerufen werden,
 so sollte man die Annotation @ParameterizedTest verwenden.
 Dies Art von Test bietet weiter den Vorteil, dass die Werte, die einzelnen Testfälle parametrisieren,
-aus diversen vorhandenen oder selbst implementierbaren Quellen bezogen werden können.
+aus diversen vorhandenen
+(z.B. `CsvSource` oder `EnumSource`)
+oder selbst implementierbaren Quellen bezogen werden können.
 Im Gegensatz dazu werden diese Werte bei den zuvor behandelten dynamischen Tests typischerweise direkt im Code berechnet.
 Im folgenden Beispiel werden die Parameter der Einfachheit halber mit Hilfe der Annotation @MethodSource aus einer lokalen Methode gelesen.
 @ParameterizedTest ist eine Anwendung des allgemeineren TestTemplate-Konzepts,
-mit dessen Hilfe auch die verwandten RepeatedTests umgesetzt sind.
+mit dessen Hilfe auch das verwandte `@RepeatedTest` umgesetzt ist.
 
 image::images/parameterized_code.png[]
 
