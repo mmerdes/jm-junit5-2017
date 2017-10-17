@@ -15,9 +15,7 @@ image::images/hello_code.png[]
 
 Man erkennt sogleich,
 dass sich die Namen der Lifecycle-Methoden im Vergleich zu JUnit 4 geändert haben.
-Die neue Nomenklatur ist das Ergebnis langer Diskussionen
-[REF: https://github.com/junit-team/junit5/issues/163 ]
-und versucht,
+Die neue Nomenklatur ist das Ergebnis langer Diskussionen [3] und versucht,
 die Bedeutung noch deutlicher hervorzuheben, als das bisher der Fall war.
 Zu den wichtigsten Annotationen gehören die Folgenden:
 @BeforeAll wird einmal pro Testklasse aufgerufen, @BeforeEach vor jeder einzelnen Testmethode;

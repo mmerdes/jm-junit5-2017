@@ -4,14 +4,27 @@
 
 [horizontal]
 
-[1]:: Martin Fowler: XUnit
+[1]:: Martin Fowler: XUnit,
       http://www.martinfowler.com/bliki/Xunit.html
 
-[2]:: Henn Idan:
-      The Top 100 Java Libraries in 2017 - Based on 259,885 Source Files
+[2]:: Henn Idan: The Top 100 Java Libraries in 2017 - Based on 259,885 Source Files,
       http://blog.takipi.com/the-top-100-java-libraries-in-2017-based-on-259885-source-files/
 
+[3]:: GitHub Issue:
+      https://github.com/junit-team/junit5/issues/163
 
-[55]:: JUnit 5 Beispielprojekte mit Gradle/Maven,
+[4]:: JavaDoc java.util.ServiceLoader:
+      https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html
+
+[5]:: Johannes Link und Matthias Merdes: JUnit-5-Test-Engine selbst gemacht,
+      https://jaxenter.de/junit-5-test-engine-selbst-gemacht-62472
+
+[6]:: Johannes Link: Property-Based Testing in Java,
+      http://jqwik.net/
+
+[7]:: Specsy Unit Testing Framework,
+      http://specsy.org/
+
+[8]:: JUnit 5 Beispielprojekte mit Gradle/Maven,
       https://github.com/junit-team/junit5-samples
 
