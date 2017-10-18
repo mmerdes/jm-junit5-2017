@@ -1,8 +1,9 @@
 == Hintergrund und Motivation
 
-Das Test-Framework JUnit hat seit dem ersten Release im Jahr 2000 wesentlich dazu beigetragen,
+Das Test-Framework JUnit hat seit dem ersten Release wesentlich dazu beigetragen,
 testgetriebene Entwicklung zu ermöglichen.
-Der Legende nach wurde es ursprünglich von Kent Beck und Erich Gamma im Flugzeug per Pair-Programming entwickelt [1]
+Der Legende nach wurde es ursprünglich im Jahr 1997
+von Kent Beck und Erich Gamma im Flugzeug per Pair-Programming entwickelt [1]
 und war seitdem Vorbild für viele andere Test-Frameworks.
 Nach einer aktuellen Untersuchung vom Juli diesen Jahres [2] ist JUnit die am meisten verwendete Java-Bibliothek überhaupt.
 

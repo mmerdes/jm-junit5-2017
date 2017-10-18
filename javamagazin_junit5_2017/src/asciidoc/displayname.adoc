@@ -2,11 +2,11 @@
 
 === Frei definierbare Namen
 
-Die Annotation @DisplayName ermöglicht es, fast beliebige Namen für Testklassen
+Die Annotation `@DisplayName` ermöglicht es, fast beliebige Namen für Testklassen
 und einzelnen Testmethoden zu verwenden,
 so dass sich übersichtliche und gut lesbare Baumdarstellungen in der GUI der IDE erzielen lassen.
 
-.Frei definierte Namen im Code
+.Frei definierte Namen
 image::images/displayname_code.png[DisplayName, 350, float="left",align="left"]
 
 
@@ -17,6 +17,6 @@ zwischen der Baumansicht und dem Sourcecode zu navigieren.
 Dies wird dadurch ermöglicht, dass die JUnit Platform der IDE die Möglichkeit gibt,
 einzelne Tests sauber zu referenzieren ohne reflexiv auf den Methodennamen zuzugreifen.
 
-.Frei definierte Namen in der IDE
+.Ausführung von Tests mit frei definierte Namen
 image::images/displaynames_ide.png[DisplayNameCode, 300, float="left",align="left"]
 

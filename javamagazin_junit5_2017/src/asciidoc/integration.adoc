@@ -11,8 +11,8 @@ die in CI-Builds zum Einsatz kommen.
 === Buildtools
 
 Die meisten Projekte im Java-Umfeld werden heute sicherlich mit Maven oder Gradle gebaut.
-Daher hat das JUnit 5-Team von Anfang an ein Gradle Plugin [Referenz]
-und einen Maven Surefire Provider [Referenz] mitentwickelt.
+Daher hat das JUnit 5-Team von Anfang an ein Gradle Plugin
+und einen Maven Surefire Provider mitentwickelt.
 Der Surefire Provider wurde bereits an das entsprechende Apache-Projekt übergeben,
 um dort weiterentwickelt zu werden;
 für das Gradle Plugin ist ein ähnliches Vorgehen in Vorbereitung.
@@ -23,7 +23,7 @@ so lohnt sich ein Blick auf die entsprechenden Beispielprojekte [8].
 Zusätzlich zu dieser Buildtool-Integration gibt es einen `ConsoleLauncher`,
 der mit zahlreichen Optionen parametrisierbar ist
 und das Ergebnis einer Testausführung in einer wohlformatierten Baumdarstellung ausgibt.
-Dazu gitb es im zentralen Maven-Repository unter der Dependency `junit-platform-console-standalone`
+Dazu gibt es im zentralen Maven-Repository unter der Dependency _junit-platform-console-standalone_
 ein stand-alone Executable, was direkt mit `java -jar` aufgerufen werden kann.
 Mit diesem Werkzeug wäre auch eine Integration in nicht direkt unterstützte Buildtools (z.B. Ant) realisierbar.
 
@@ -40,7 +40,7 @@ Umgekehrt lassen sich neue Jupiter-Tests in JUnit 4-Umgebungen ausführen,
 wenn man den entsprechenden Runner
 `org.junit.platform.runner.JUnitPlatform`
 aus der Dependency
-`junit-platform-runner`
+_junit-platform-runner_
 verwendet,
 der das Jupiter-Programmiermodell bestmöglich auf die in JUnit 4 vorhandenen Abstraktionen übersetzt.
 Auch wenn beide Integrationen eher nicht
@@ -56,6 +56,6 @@ die CI-Builds laufen schon seit einigen Monaten sowohl gegen Java 8 als auch Jav
 Die Modulinformation wird derzeit noch automatisch generiert,
 d.h. dass im Moment noch alle Klassen physisch verwendbar sind.
 Um für die Zukunft gewappnet zu sein,
-sollte man als Endanwender jedoch bereits jetzt auf die Verwendung von Klassen verzichten,
+sollte man als Anwender jedoch bereits jetzt auf die Verwendung von Klassen verzichten,
 die mit `@API(Status.INTERNAL)` annotiert sind.
 

@@ -16,7 +16,7 @@ So wird nämlich für alle im Jupiter-API vorhandenen Annotationen eine Komposit
 .Meta-Annotationen durch Komposition anderer Annotationen
 image::images/metaannotation.png[Metaannotation, 200, float="left",align="left"]
 
-Im Beispiel werden besonders schnell ausführbare Tests durch die Meta-Annotation @FastTest gekennzeichnet,
+Im Beispiel werden besonders schnell ausführbare Tests durch die Meta-Annotation `@FastTest` gekennzeichnet,
 z.B. weil man sie aus Fast-Feedback-Gründen im Build zuerst ausführen möchte.
 Mit diesem Mechanismus lassen sich Möglichkeiten der Jupiter-API parametrisieren und zu höherwertigen Abstraktionen zusammenfassen,
 was der konsistenten Verwendung z.B. durch verschiedene Testautoren im Team dienen kann.

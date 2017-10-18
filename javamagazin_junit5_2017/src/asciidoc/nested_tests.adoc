@@ -1,7 +1,7 @@
 
 === Nested Tests
 
-JUnit Jupiter unterstützt direkt die Erstellung von geschachtelten Tests über die Annotation @Nested.
+JUnit Jupiter unterstützt direkt die Erstellung von geschachtelten Tests über die Annotation `@Nested`.
 Diese Fähigkeit ist grob vergleichbar mit dem aus JUnit 4 bekannten HierarchicalContextRunner.
 
 .Nested Tests

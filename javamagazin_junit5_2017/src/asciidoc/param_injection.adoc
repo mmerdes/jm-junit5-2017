@@ -6,7 +6,7 @@ Eine weitere Neuerung,
 die vor allem aus dem Spring Framework und anderen Dependency-Injection-Mechanismen bekannt ist,
 ist die Möglichkeit zur Parameter-Injection.
 
-.Parameter-Injection im Code
+.Beispiel für Parameter-Injection
 image::images/parameter_injection.png[ParamInjection, 300, float="left",align="left"]
 
 Durften Testmethoden in den bisherigen Versionen von JUnit keine Argumente haben,
@@ -15,7 +15,7 @@ Dieser neue Mechanismus ermöglicht es Erweiterungen,
 Parameter für die Ausführung einer Testmethode bereitzustellen.
 Dazu können solche ParameterResolver-Extensions registriert werden,
 um Parameter aufzulösen, z.B. basierend auf einem bestimmten Typen oder einer bestimmten Annotation.
-Im angegebenen Beispiel wird der bereits mitgelieferte typbasierte 'TestReporterParameterResolver' aktiv,
+Im angegebenen Beispiel wird der bereits mitgelieferte typbasierte `TestReporterParameterResolver` aktiv,
 um eine TestReporter-Instanz zu liefern.
 Mit diesem TestReporter können unabhängig von der Konsole in geordneter Weise Informationen an die ausführende Umgebung geliefert werden.
 

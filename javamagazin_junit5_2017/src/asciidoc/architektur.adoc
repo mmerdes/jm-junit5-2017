@@ -39,7 +39,7 @@ Die Engine-Abstraktion ermöglicht die Koexistenz verschiedener Testframeworks b
 und damit insbesondere auch die Ausführung von Testfällen auf Basis von JUnit 4 und JUnit 5 innerhalb eines einzigen Testlaufs.
 Dies impliziert, dass man bei existierenden Projekten auf Basis von JUnit 4 langsam mit einigen JUnit 5-Tests beginnen kann
 und keineswegs gezwungen ist, eine Big-Bang-Migration durchzuführen.
-Weitere Hilfen für die Migration wie etwa der Support ausgewählter Rules finden sich im Artefakt 'junit-jupiter-migrationsupport'.
+Weitere Hilfen für die Migration wie etwa der Support ausgewählter Rules finden sich im Artefakt _junit-jupiter-migrationsupport_.
 Um von einem integrierenden Tool angesprochen zu werden,
 müssen Test-Engines lediglich auf dem Klassenpfad vorhanden sein
 und sich über den normalen _ServiceLoader_-Mechanismus der JVM [4]
@@ -49,7 +49,7 @@ Die Engine-Implementierungen hängen dabei nur vom Artefakt _junit-platform-engi
 JUnit 5 liefert zwei Engines aus:
 Die _junit-vintage-engine_ dient dem Auffinden und der Ausführung von JUnit 4-Tests.
 Die _junit-jupiter-engine_ hingegen implementiert das neue Programmiermodell von JUnit 5.
-Die Engine API ist dabei im Prinzip ein Angebot an existierende und zukünftige Test-Frameworks.
+Die Engine-API ist dabei im Prinzip ein Angebot an existierende und zukünftige Test-Frameworks.
 Solche Frameworks müssen nur eine Engine-Implementierung bereitstellen,
 und profitieren sofort von der Integration,
 die die Tool-Hersteller für die JUnit 5-Plattform einmalig erstellt haben.

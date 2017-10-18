@@ -19,7 +19,7 @@
 [5]:: Johannes Link und Matthias Merdes: JUnit-5-Test-Engine selbst gemacht,
       https://jaxenter.de/junit-5-test-engine-selbst-gemacht-62472
 
-[6]:: Johannes Link: Property-Based Testing in Java,
+[6]:: jqwik: Property-Based Testing in Java,
       http://jqwik.net/
 
 [7]:: Specsy Unit Testing Framework,
