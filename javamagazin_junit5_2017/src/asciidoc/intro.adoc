@@ -16,10 +16,10 @@ Dazu kommt, dass die vorherigen Versionen naturgemäß keine Sprachfeatures von 
 weil stets die Kompatibilität zu Java 5 gewahrt bleiben musste.
 
 Nach längerer Zeit ohne neue Releases und ohne grundlegende Modernisierungsmöglichkeit
-hat im Oktober 2015 die Entwicklung der vollständig überarbeiteten Version 5 begonnen.
-Nach einer Startfinanzierung durch die Crowdfunding-Kampagne "JUnit Lambda"
-begann im Oktober 2015 die Planung der neuen Version bei einem Workshop mit dem Core-Committer-Team
-und Herstellern der Tools Eclipse, Intellij Idea, Gradle und Pivotal (Spring Framework).
+begann im Oktober 2015 die Entwicklung der vollständig überarbeiteten Version 5.
+Mit einer Startfinanzierung durch die Crowdfunding-Kampagne "JUnit Lambda"
+starteten im Oktober 2015 die Planungen der neuen Version bei einem Workshop mit dem Core-Committer-Team
+und Herstellern der Tools Eclipse, Intellij Idea und Gradle sowie des Spring Frameworks (Pivotal).
 Nach einem Prototypen und einer Reihe von Milestone-Releases
 ist im Sommer 2017 mit der Version 5.0.0 GA das erste Produktionsrelease der neuen Version erschienen.
 Version 5.1 ist bereits in Planung.
