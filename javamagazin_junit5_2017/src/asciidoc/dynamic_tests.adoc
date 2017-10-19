@@ -41,7 +41,7 @@ Die so gewonnene Ausdrucksmächtigkeit für dieses und andere Feature
 war bei den Vorüberlegungen für das neue JUnit 5 im Jahre 2015 mit ausschlaggebend dafür,
 die Abwärtskompatibilität zu Java 5 fallen zu lassen.
 Nicht umsonst trug die zur Anschubfinanzierung der Neuentwicklung initiierte Crowdfunding-Kampagne
-den Namen 'JUnit Lambda'.
+den Namen "JUnit Lambda".
 
 Erwähnenswert ist in diesem Zusammenhang,
 dass es für diese Art von dynamischen Tests explizit _keine_ Ausführung von Lifecycle-Methoden auf der Ebene

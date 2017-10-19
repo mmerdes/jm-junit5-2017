@@ -6,7 +6,7 @@ bevor einige fortgeschrittene oder grundsätzlich neue Feature vorgestellt werde
 Naheliegenderweise heißt die wichtigste Annotation immer noch `@Test`.
 Im Unterschied zu JUnit 4 muss man allerdings ein anderes Package importieren:
 `org.junit.jupiter.api` anstelle von `org.junit`.
-Hierbei bezeichnet 'jupiter' die Testengine,
+Hierbei bezeichnet "jupiter" die Testengine,
 die das neue JUnit 5-Programmiermodell unterstützt.
 Wie im Abschnitt über die Architektur weiter ausgeführt
 unterstützt die neue JUnit-Plattform die Koexistenz verschiedener Testengines.
