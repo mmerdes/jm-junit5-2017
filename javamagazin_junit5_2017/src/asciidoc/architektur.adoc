@@ -7,8 +7,9 @@
 Eines der Hauptziele bei der Neuentwicklung von JUnit 5 war die
 logische Trennung der Rollen zum Verfassen eines Tests und zur Ausführung von Tests.
 Physisch spiegelt sich das in der Entkopplung der APIs zum Schreiben von denen zum Ausführen von Tests wider.
-In JUnit 4 sind beide APIs in einem Artefakt enthalten.
-Alle, die JUnit auf irgendeine Weise verwenden, hängen von diesem einzigen jar-File ab,
+In JUnit 4 sind beide APIs in einem einzigen Artefakt enthalten.
+Alle, die JUnit 4 auf irgendeine Weise verwenden,
+hängen von genau diesem jar-File ab,
 unabhängig davon, ob es sich dabei um IDEs, Build Tools, andere Test-Frameworks oder Testcode handelt.
 Diese Verwender benutzen teilweise Interna von JUnit,
 wie etwa interne Klassen oder private Instanzvariablen.
@@ -23,14 +24,15 @@ in Teilen sogar nahezu unmöglich gemacht.
 .Gesamtarchitektur von JUnit 5
 image::images/architektur.png[Architektur, 400, float="left",align="left"]
 
-Wie das oben abgebildete Architekturdiagramm zeigt,
+Wie das Architekturdiagramm in Abb. 13 zeigt,
 wurde beim Entwurf von JUnit 5 großer Wert darauf gelegt,
 eine möglichst saubere Trennung der APIs für die unterschiedlichen Rollen der möglichen Verwender zu erreichen.
 So benötigt ein Testautor lediglich die Dependency _junit-jupiter-api_,
 die alle Annotations wie etwa `@Test`, Lifecycle-Annotationen und grundlegende Assertions mitbringt.
 
 Tools, die eine JUnit 5-Integration anbieten wollen,
-wie etwa IDEs oder Build Tools verwenden das Modul _junit-platform-launcher_ innerhalb der JUnit 5-Plattform,
+wie etwa IDEs oder Build Tools,
+verwenden das Modul _junit-platform-launcher_ innerhalb der JUnit 5-Plattform,
 um die Ausführung von Tests anzustoßen.
 Der darin enthaltene _Launcher_ orchestriert das Auffinden
 und die Ausführung von Tests durch verschiedene _Engines_.
@@ -56,7 +58,7 @@ die die Tool-Hersteller für die JUnit 5-Plattform einmalig erstellt haben.
 Da eine Engine-Implementierung in vielen Fällen recht einfach zu erstellen ist [5],
 sinkt somit die Schwelle,
 ein sauber integriertes Test-Framework einem weiteren Benutzerkreis zur Verfügung zu stellen.
-Einige Projekte haben bereits gegen Milestone-Releases von JUnit 5 eigene Engines implementiert,
+Einige Projekte haben schon gegen Milestone-Releases von JUnit 5 eigene Engines implementiert,
 z.B. die jqwik-Engine für Property-Based Testing [6]
 oder das BDD-Framework Specsy [7].
 

@@ -4,7 +4,7 @@
 Im Folgenden soll überblicksartig das neue Extensionmodell vorgestellt werden.
 Im Gegensatz zu den zuvor beschriebenen Testengines,
 die es ermöglichen, beliebige Testdefinitionen und Ausführungssemantiken zu unterstützen,
-dient das im Folgenden beschriebene Extensionmodell zur Verfeinerung der Jupiter-Engine.
+dient das im Folgenden beschriebene Extensionmodell zur Verfeinerung und Ergänzung der Jupiter-Engine.
 
 Das hybride Erweiterungsmodell von JUnit 4 aus Runner und Rule hatte sich über die Jahre hinweg
 insbesondere im Bereich der Komponierbarkeit als problematisch herausgestellt.
@@ -22,8 +22,8 @@ image::images/mockito_extension_diagram.png[ExtensionClassDiagramm, 300, float="
 Als Basis aller Erweiterungen für JUnit Jupiter gibt es das Marker-Interface `Extension`.
 Nehmen wir nun an, dass eine einfache Extension zur Integration des Mockframeworks Mockito erstellt werden soll.
 Konkret müsste eine solche `MockitoExtension` die beiden ExtensionPoints
-`TestInstancePostProcessor` und `ParameterResolver` implementieren,
-wenn man die Extension dann wie in Abbildung 14 verwenden will.
+`TestInstancePostProcessor` und `ParameterResolver` implementieren (Abb. 14),
+wenn man die Extension dann wie in Abbildung 15 verwenden will.
 Beide ExtensionPoints erweitern wiederum das genannte Marker-Interface.
 
 .Einfache Mockito-Extension

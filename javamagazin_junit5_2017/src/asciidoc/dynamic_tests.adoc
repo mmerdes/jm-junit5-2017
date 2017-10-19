@@ -1,6 +1,5 @@
 
 
-
 === Dynamische Tests: @TestFactory und @ParameterizedTest
 
 Während die grundlegenden Annotationen wie `@Test` oder `@BeforeEach`, `@AfterAll` etc. im wesentlichen
@@ -9,17 +8,17 @@ so gibt es in JUnit 5 auch grundlegend neue Konzepte.
 Hierzu zählt insbesondere die Möglichkeit, dynamische Tests zu erstellen.
 
 Neben den schon aus JUnit 4 in verschiedenen Varianten bekannten parametrisierten Tests
-stellen vor allem die Annotation `@TestFactory` eine besondere Neuerung dar.
+stellt vor allem die Annotation `@TestFactory` eine besondere Neuerung dar.
 Mit dieser Annotation gekennzeichnete Methoden stellen selbst keine Tests dar,
 sondern liefern eine Stream (oder eine Collection) an Testfällen zurück.
 Dieser Stream entsteht erst zur Laufzeit,
 insbesondere ist seine Länge nicht vorab bekannt.
-Durch die in der JUnit Platform exponierten Listener ist die IDE aber dennoch in der Lage,
+Durch die in der JUnit-Plattform exponierten Listener ist die IDE aber dennoch in der Lage,
 für jeden Testfall innerhalb des Streams einen sauberen Knoten im Ausführungsbaum darzustellen
 und das in Verbindung mit dynamischen Namen.
 Lässt man z.B. das folgende Beispiel in einer IDE ablaufen,
 so sieht man, dass die einzelnen Knoten tatsächlich erst zur Laufzeit
-bei der Durchführung des gerade entstandenen Tests zur graphischen Darstellung hinzugefügt werden.
+bei der Durchführung des gerade entstandenen Tests zur graphischen Darstellung hinzugefügt werden (Abb. 10).
 
 .Beispiel für Dynamische Tests
 image::images/dynamic_fibonacci_code.png[DynamicTest, 400, float="left",align="left"]
@@ -28,9 +27,9 @@ Im Beispiel geht man von einem Stream natürlicher Zahl aus
 und bildet diesen mit Hilfe der Methodenreferenz `fibonacci` auf Fibonacci-Zahlen ab.
 Diese Fibonacci-Folge wird dann über das statisch importierte
 `org.junit.jupiter.api.DynamicTest.dynamicTest(String displayName, Executable executable)`
-auf einen Stream von dynamischen Testfällen abgebildet.
-Auch wenn in diesem Beispiel bereits zum Zeitpunkt der Testerstellung
-die Folge auf 12 Testfälle begrenzt wird,
+auf einen Stream von dynamischen Testfällen abgebildet (Abb. 9).
+Auch wenn in diesem einfachen Beispiel
+die Folge bereits zum Zeitpunkt der Testerstellung auf 12 Testfälle begrenzt wird,
 so könnte man jederzeit ein erst zur Laufzeit berechnetes Abbruchkriterium verwenden.
 
 .Ausführung Dynamischer Tests in der IDE
@@ -45,10 +44,11 @@ den Namen "JUnit Lambda".
 
 Erwähnenswert ist in diesem Zusammenhang,
 dass es für diese Art von dynamischen Tests explizit _keine_ Ausführung von Lifecycle-Methoden auf der Ebene
-einzelner Testfälle gibt, sondern nur für die ganze `@TestFactory`-Methode.
+einzelner Testfälle innerhalb des Streams gibt,
+sondern nur für die ganze `@TestFactory`-Methode.
 Möchte man also,
 dass z.B. `@BeforeEach`-Methoden für jeden einzelnen einer Menge von Testfällen aufgerufen werden,
-so sollte man die Annotation `@ParameterizedTest` verwenden.
+so sollte man die Annotation `@ParameterizedTest` verwenden (Abb. 11 und 12).
 Dies Art von Test bietet weiter den Vorteil, dass die Werte, die einzelnen Testfälle parametrisieren,
 aus diversen vorhandenen
 (z.B. `CsvSource` oder `EnumSource`)
