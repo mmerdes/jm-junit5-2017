@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 @DisplayName("A stack")
-@IncludeEngines("junit-jupiter")
 class TestingAStack {
 
 	private Stack<Object> stack;
